@@ -4,128 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:tag="directPayment"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="411dp"
-        android:layout_height="141dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transactionValueText">
-
-        <Button
-            android:id="@+id/directPayment"
-            android:layout_width="120dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="67dp"
-            android:layout_marginLeft="67dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/button_border"
-            android:fontFamily="@font/opensans_semibold"
-            android:text="A vista"
-            android:textAllCaps="false"
-            android:textColor="#2DB38D"
-            android:typeface="normal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/button15"
-            android:layout_width="119dp"
-            android:layout_height="79dp"
-            android:layout_marginStart="37dp"
-            android:layout_marginLeft="37dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="67dp"
-            android:layout_marginRight="67dp"
-            android:background="@drawable/button_border"
-            android:text="Parcelado"
-            android:textAllCaps="false"
-            android:textColor="#2DB38D"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/directPayment"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginRight="64dp"
-            android:layout_marginBottom="16dp"
-            android:text="Digite a quantidade de parcelas"
-            android:textSize="20sp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <TextView
-        android:id="@+id/textIde2"
+        android:id="@+id/textIde3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Valor da transação"
+        android:text="É usuário Poupix?"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
-
-    <TextView
-        android:id="@+id/transactionValueText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="R$ 0,00"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textIde2" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
-        android:layout_width="221dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="121dp"
-        android:layout_marginLeft="121dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginRight="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:drawableLeft="@drawable/ic_shop"
-            android:drawablePadding="10dp"
-            android:paddingTop="5dp"
-            android:text="Nome do estabelecimento"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="408dp"
         android:layout_height="339dp"
-        android:visibility="invisible"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="105dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/textIde">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="95dp"
@@ -183,6 +89,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
+                
                 android:tag="7"
                 android:text="7"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -198,9 +105,11 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/button_border"
+                android:background="@drawable/jump_button"
+                
                 android:tag="00"
-                android:text="00"
+                android:text="Pular"
+                android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button9" />
@@ -227,7 +136,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-
+                
                 android:tag="2"
                 android:text="2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -244,7 +153,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-
+                
                 android:tag="5"
                 android:text="5"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -261,7 +170,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-
+                
                 android:tag="8"
                 android:text="8"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -278,7 +187,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-
+                
                 android:tag="0"
                 android:text="0"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -311,7 +220,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-
+                
                 android:tag="3"
                 android:text="3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -328,7 +237,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-
+                
                 android:tag="6"
                 android:text="6"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -345,7 +254,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-
+                
                 android:tag="9"
                 android:text="9"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -363,7 +272,7 @@
                 android:layout_marginRight="5dp"
                 android:background="@drawable/backbutton"
                 android:drawableStart="@drawable/ic_backspace"
-
+                
                 android:paddingLeft="32dp"
                 android:tag="9"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -401,19 +310,55 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textIde2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Favor digite seu CPF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textIde3" />
+
+    <TextView
+        android:id="@+id/textIde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:text="000.000.000-00"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textIde2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="221dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="121dp"
+        android:layout_marginLeft="121dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginRight="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="175dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="175dp"
-            android:layout_marginRight="175dp"
-            android:text="0"
-            android:textSize="20sp"
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableLeft="@drawable/ic_shop"
+            android:drawablePadding="10dp"
+            android:paddingTop="5dp"
+            android:text="Nome do estabelecimento"
             android:textStyle="bold"
-            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

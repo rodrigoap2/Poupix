@@ -37,7 +37,7 @@ public class PaymentMethodChoice extends AppCompatActivity {
         ConstraintLayout methodLayout = (ConstraintLayout) findViewById(R.id.methodConstraint);
         for(int i = 0; i < methodLayout.getChildCount(); i++){
             Button button = (Button) methodLayout.getChildAt(i);
-            button.setOnClickListener(choosePaymentMethod);
+            button.setOnClickListener(choosePaymentMethod); //Setting buttons onclickMethod
         }
     }
 }
