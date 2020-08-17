@@ -10,7 +10,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class PaymentMethodChoice extends AppCompatActivity {
-    public PaymentInformations paymentInformations;
+    private PaymentInformations paymentInformations;
+
+    public PaymentInformations getPaymentInformations(){
+        return this.paymentInformations;
+    }
+
+    public void setPaymentInformations(PaymentInformations paymentInformations){
+        this.paymentInformations = paymentInformations;
+    }
 
     private View.OnClickListener choosePaymentMethod = new View.OnClickListener() {
         @Override
@@ -18,10 +26,19 @@ public class PaymentMethodChoice extends AppCompatActivity {
             Button buttonChosen = (Button) view;
             buttonChosen.setOnClickListener(this);
             String methodChosen = buttonChosen.getTag().toString();
+            PaymentInformations paymentInformations = getPaymentInformations();
             paymentInformations.setPaymentMethod(methodChosen);
-            Intent intent = new Intent(PaymentMethodChoice.this, PaymentParcelling.class);
-            intent.putExtra("PaymentInfo",paymentInformations);
-            startActivity(intent);
+            if(methodChosen.equals("debit")){
+                Intent intent = new Intent(PaymentMethodChoice.this, CpfDefine.class);
+                paymentInformations.setParcells(1);
+                paymentInformations.setDirectPayment(true);
+                intent.putExtra("PaymentInfo",paymentInformations);
+                startActivity(intent);
+            }else if(methodChosen.equals("credit")) {
+                Intent intent = new Intent(PaymentMethodChoice.this, PaymentParcelling.class);
+                intent.putExtra("PaymentInfo",paymentInformations);
+                startActivity(intent);
+            }
         }
     };
 
