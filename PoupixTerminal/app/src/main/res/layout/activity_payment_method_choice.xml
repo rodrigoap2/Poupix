@@ -59,6 +59,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/methodConstraint"
         android:layout_width="411dp"
         android:layout_height="141dp"
         android:layout_marginTop="113dp"

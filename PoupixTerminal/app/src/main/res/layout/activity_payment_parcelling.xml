@@ -13,7 +13,7 @@
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textIde">
+        app:layout_constraintTop_toBottomOf="@+id/transactionValueText">
 
         <Button
             android:id="@+id/button12"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
     <TextView
-        android:id="@+id/textIde"
+        android:id="@+id/transactionValueText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -96,7 +96,7 @@
         android:layout_height="26dp"
         android:layout_marginStart="121dp"
         android:layout_marginLeft="121dp"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="120dp"
         android:layout_marginRight="120dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -150,7 +150,6 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-                android:onClick="textEditor"
                 android:tag="1"
                 android:text="1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +166,6 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-                android:onClick="textEditor"
                 android:tag="4"
                 android:text="4"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -184,7 +182,6 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-                android:onClick="textEditor"
                 android:tag="7"
                 android:text="7"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -201,7 +198,6 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-                android:onClick="textEditor"
                 android:tag="00"
                 android:text="00"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -230,7 +226,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-                android:onClick="textEditor"
+                
                 android:tag="2"
                 android:text="2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -247,7 +243,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-                android:onClick="textEditor"
+                
                 android:tag="5"
                 android:text="5"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -264,7 +260,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-                android:onClick="textEditor"
+                
                 android:tag="8"
                 android:text="8"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -281,7 +277,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-                android:onClick="textEditor"
+                
                 android:tag="0"
                 android:text="0"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -314,7 +310,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-                android:onClick="textEditor"
+                
                 android:tag="3"
                 android:text="3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -331,7 +327,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-                android:onClick="textEditor"
+                
                 android:tag="6"
                 android:text="6"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -348,7 +344,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_border"
-                android:onClick="textEditor"
+                
                 android:tag="9"
                 android:text="9"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -366,7 +362,7 @@
                 android:layout_marginRight="5dp"
                 android:background="@drawable/backbutton"
                 android:drawableStart="@drawable/ic_backspace"
-                android:onClick="textEditor"
+                
                 android:paddingLeft="32dp"
                 android:tag="9"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -416,7 +412,7 @@
             android:text="0"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
