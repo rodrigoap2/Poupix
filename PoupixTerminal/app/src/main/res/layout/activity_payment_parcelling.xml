@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button15"
+            android:id="@+id/parcelPayment"
             android:layout_width="119dp"
             android:layout_height="79dp"
             android:layout_marginStart="37dp"
@@ -50,7 +50,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/parcelQuestion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
@@ -120,6 +120,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonsLayout"
         android:layout_width="408dp"
         android:layout_height="339dp"
         android:visibility="invisible"
@@ -136,6 +137,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="56dp"
+            android:tag="c"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/c2"
             app:layout_constraintStart_toStartOf="parent"
@@ -212,6 +214,7 @@
             android:layout_height="227dp"
             android:layout_marginTop="56dp"
             android:layout_marginBottom="56dp"
+            android:tag="c"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -296,6 +299,7 @@
             android:layout_marginEnd="37dp"
             android:layout_marginRight="37dp"
             android:layout_marginBottom="56dp"
+            android:tag="c"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/c2"
@@ -365,7 +369,7 @@
                 android:drawableStart="@drawable/ic_backspace"
 
                 android:paddingLeft="32dp"
-                android:tag="9"
+                android:tag="erase"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.333"
                 app:layout_constraintStart_toStartOf="parent"
@@ -374,6 +378,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/confirmConstraint"
             android:layout_width="145dp"
             android:layout_height="43dp"
             android:layout_marginStart="132dp"
@@ -381,12 +386,13 @@
             android:layout_marginEnd="132dp"
             android:layout_marginRight="132dp"
             android:layout_marginBottom="6dp"
+            android:tag="confirm"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <Button
-                android:id="@+id/button14"
+                android:id="@+id/confirmButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/confirm_button"
@@ -402,7 +408,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/parcelNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="175dp"
@@ -410,6 +416,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="175dp"
             android:layout_marginRight="175dp"
+            android:tag="numberParcels"
             android:text="0"
             android:textSize="20sp"
             android:textStyle="bold"
