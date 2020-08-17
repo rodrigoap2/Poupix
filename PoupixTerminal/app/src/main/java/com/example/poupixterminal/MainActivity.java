@@ -14,12 +14,14 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private String transactionValue = "000";
+    private String formattedTransactionValue = "R$ 0,00";
 
     public void valueFormat(){
         String textValue = this.transactionValue.substring(0,this.transactionValue.length()-2) + "." + this.transactionValue.substring(this.transactionValue.length()-2,this.transactionValue.length());
         Locale localeBR = new Locale("pt","BR");
         NumberFormat formatter = NumberFormat.getCurrencyInstance(localeBR);
         textValue = "R$ " + formatter.format(Double.parseDouble(textValue)).substring(2);
+        this.formattedTransactionValue = textValue;
         TextView transactionValueText = (TextView) findViewById(R.id.transactionValueText);
         transactionValueText.setText(textValue);
     }
@@ -44,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
             this.transactionValue = "0" + this.transactionValue.substring(0,this.transactionValue.length()-1);
         }
         valueFormat();
+    }
+
+    public void confirmValue(View view){
+        PaymentInformations paymentInformations = new PaymentInformations();
+        paymentInformations.setValue(formattedTransactionValue);//Passing to the info object the value of the transaction
+        Intent intent = new Intent(MainActivity.this,PaymentMethodChoice.class);
+        intent.putExtra("PaymentInfo",paymentInformations); //Putting the object into the intent
+        startActivity(intent); //Passing to the paymentMethodActivity
     }
 
     @Override
