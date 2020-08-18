@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         transactionValueText.setText(textValue);
     }
 
+    @Override
+    public void onBackPressed() { }
+
     public void valueEditor(View view){
         Button buttonChosen = (Button) view;
         this.transactionValue += buttonChosen.getTag().toString();
