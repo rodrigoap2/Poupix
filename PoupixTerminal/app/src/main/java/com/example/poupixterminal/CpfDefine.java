@@ -15,6 +15,7 @@ import java.text.ParseException;
 
 public class CpfDefine extends AppCompatActivity {
     private String cpf = "00000000000";
+    private PaymentInformations paymentInformations;
 
     public String getCpf() {
         return this.cpf;
@@ -24,12 +25,18 @@ public class CpfDefine extends AppCompatActivity {
         this.cpf = cpf;
     }
 
+    public PaymentInformations getPaymentInformations() {
+        return paymentInformations;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cpf_define);
         setTitle("");
         setNumberButtonsOnClick();
+        Intent intent = getIntent();
+        this.paymentInformations = intent.getParcelableExtra("PaymentInfo");
     }
 
     private String cpfFormat(){
@@ -96,7 +103,7 @@ public class CpfDefine extends AppCompatActivity {
             }else if(buttonsLayout.getChildAt(i).getTag().toString().equals("confirm")){
                 ConstraintLayout c = (ConstraintLayout)  buttonsLayout.getChildAt(i);
                 Button button = (Button) c.getChildAt(0);
-                button.setOnClickListener(confirmParcel);
+                button.setOnClickListener(confirmCpf);
             }
         }
     }
@@ -108,10 +115,15 @@ public class CpfDefine extends AppCompatActivity {
         }
     };
 
-    private View.OnClickListener confirmParcel = new View.OnClickListener() {
+    private View.OnClickListener confirmCpf = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            PaymentInformations paymentInformations = getPaymentInformations();
+            String userCpf = getCpf();
+            Intent intent = new Intent(CpfDefine.this,UserSearch.class);
+            intent.putExtra("PaymentInfo",paymentInformations);
+            intent.putExtra("Cpf", userCpf);
+            startActivity(intent);
         }
     };
 }

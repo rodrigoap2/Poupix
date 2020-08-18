@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CpfDefine"></activity>
+        <activity android:name=".UserSearch"></activity>
+        <activity android:name=".CpfDefine" />
         <activity android:name=".PaymentParcelling" />
         <activity android:name=".MainActivity">
             <intent-filter>
