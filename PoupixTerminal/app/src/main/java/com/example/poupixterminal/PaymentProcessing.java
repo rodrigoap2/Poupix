@@ -64,6 +64,7 @@ public class PaymentProcessing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_processing);
+        setTitle("");
         Intent intent = getIntent();
         getInfos(intent);
         processPayment();

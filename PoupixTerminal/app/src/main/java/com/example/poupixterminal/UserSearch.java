@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 public class UserSearch extends AppCompatActivity {
     private PaymentInformations paymentInformations;
     private String userCpf;
     private double storeCashback;
     private UserInfos userInfos;
+    @Override//Disabling back button
+    public void onBackPressed() { }
+
     private boolean findUserCpf(){
         //connect to API to find user cpf in DB
         //userInfos = new UserInfos("Rodrigo",userCpf,false);

@@ -15,6 +15,15 @@ public class CardInsert extends AppCompatActivity {
     private UserInfos userInfos;
     private CreditCardInfos creditCardInfos;
     private double storeCashback;
+    private boolean hasReturned = false;
+
+    public void setHasReturned(boolean hasReturned) {
+        this.hasReturned = hasReturned;
+    }
+
+    public PaymentInformations getPaymentInformations() {
+        return paymentInformations;
+    }
 
     public CreditCardInfos getCreditCardInfos(){
         return new CreditCardInfos();
@@ -26,14 +35,16 @@ public class CardInsert extends AppCompatActivity {
             public void onTick(long milissecondsUntilDone){
             }
             public void onFinish(){
-                showTextView();
+                if(!hasReturned)
+                    showTextView();
             }
         }.start();
-        new CountDownTimer(9000,1000){
+        new CountDownTimer(7000,1000){
             public void onTick(long milissecondsUntilDone){
             }
             public void onFinish(){
-                pagePassStub();
+                if(!hasReturned)
+                    pagePassStub();
             }
         }.start();
     }
@@ -56,9 +67,10 @@ public class CardInsert extends AppCompatActivity {
         cardImage.animate().setDuration(4000).alpha(0);
         TextView insertText = (TextView) findViewById(R.id.insertText);
         insertText.animate().setDuration(4000).alpha(0);
-        Button button = (Button) findViewById(R.id.backButton);
-        button.animate().setDuration(4000).alpha(0);
     }
+
+    @Override//Disabling back button
+    public void onBackPressed() { }
 
     public void pagePassStub(){
         Intent intent = new Intent(CardInsert.this,PasswordDeclaration.class);
@@ -68,6 +80,16 @@ public class CardInsert extends AppCompatActivity {
         intent.putExtra("CreditCardInfo", this.creditCardInfos);
         startActivity(intent);
     }
+
+    private View.OnClickListener backButtonOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(CardInsert.this, CpfDefine.class);
+            intent.putExtra("PaymentInfo",getPaymentInformations());
+            setHasReturned(true);
+            startActivity(intent);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,5 +105,7 @@ public class CardInsert extends AppCompatActivity {
         greetingText.setText("Olá, " + userName);
         this.creditCardInfos = getCreditCardInfos();
         showMethodInfo();
+        Button backButton = (Button) findViewById(R.id.backButton);
+        backButton.setOnClickListener(backButtonOnClick);
     }
 }

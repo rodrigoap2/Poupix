@@ -21,6 +21,9 @@ public class PasswordDeclaration extends AppCompatActivity {
     private double storeCashback;
     private String passwordText = "";
 
+    @Override//Disabling back button
+    public void onBackPressed() { }
+
     public PaymentInformations getPaymentInformations() {
         return paymentInformations;
     }
@@ -161,7 +164,8 @@ public class PasswordDeclaration extends AppCompatActivity {
     private View.OnClickListener cancelButton = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            Intent intent = new Intent(PasswordDeclaration.this, MainActivity.class);
+            startActivity(intent);
         }
     };
 
