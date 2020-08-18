@@ -111,7 +111,12 @@ public class CpfDefine extends AppCompatActivity {
     private View.OnClickListener jumpButton = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+           UserInfos userInfos = new UserInfos("Usuário","12345678900",false);
+           PaymentInformations paymentInformations = getPaymentInformations();
+           Intent intent = new Intent(CpfDefine.this, CardInsert.class);
+           intent.putExtra("PaymentInfo",paymentInformations);
+           intent.putExtra("UserInfo", userInfos);
+           startActivity(intent);
         }
     };
 
