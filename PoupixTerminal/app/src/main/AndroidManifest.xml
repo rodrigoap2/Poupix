@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CardInsert"></activity>
+        <activity android:name=".PaymentProcessing"></activity>
+        <activity android:name=".PasswordDeclaration" />
+        <activity android:name=".CardInsert" />
         <activity android:name=".UserSearch" />
         <activity android:name=".CpfDefine" />
         <activity android:name=".PaymentParcelling" />

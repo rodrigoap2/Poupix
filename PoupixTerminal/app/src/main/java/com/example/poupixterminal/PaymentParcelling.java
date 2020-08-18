@@ -74,7 +74,7 @@ public class PaymentParcelling extends AppCompatActivity {
                 Toast.makeText(PaymentParcelling.this, "O valor de parcelas ultrapassa o máximo, que é " + getMaxParcels(), Toast.LENGTH_SHORT).show();
             }
             setParcelNumber("" + value); //Updating the parcel number
-            editTextField(R.id.parcelNumber,getParcelNumber());
+            editTextField(R.id.passwordText,getParcelNumber());
         }
     };
 
@@ -88,7 +88,7 @@ public class PaymentParcelling extends AppCompatActivity {
                 actualValue = actualValue.substring(0,actualValue.length()-1);
             }
             setParcelNumber(actualValue); //Updating the parcel number
-            editTextField(R.id.parcelNumber,getParcelNumber());
+            editTextField(R.id.passwordText,getParcelNumber());
         }
     };
 
@@ -135,7 +135,7 @@ public class PaymentParcelling extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_parcelling);
         setTitle("");
-        editTextField(R.id.parcelNumber,getParcelNumber());
+        editTextField(R.id.passwordText,getParcelNumber());
         Intent intent = getIntent();
         this.paymentInformations = intent.getParcelableExtra("PaymentInfo");
         TextView textView = (TextView) findViewById(R.id.transactionValueText);

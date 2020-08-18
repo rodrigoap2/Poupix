@@ -14,6 +14,7 @@ public class CardInsert extends AppCompatActivity {
     private PaymentInformations paymentInformations;
     private UserInfos userInfos;
     private CreditCardInfos creditCardInfos;
+    private double storeCashback;
 
     public CreditCardInfos getCreditCardInfos(){
         return new CreditCardInfos();
@@ -60,7 +61,12 @@ public class CardInsert extends AppCompatActivity {
     }
 
     public void pagePassStub(){
-        //Intent intent = new Intent(UserSearch.this,);
+        Intent intent = new Intent(CardInsert.this,PasswordDeclaration.class);
+        intent.putExtra("PaymentInfo", this.paymentInformations);
+        intent.putExtra("UserInfo", this.userInfos);
+        intent.putExtra("StoreCashback", this.storeCashback);
+        intent.putExtra("CreditCardInfo", this.creditCardInfos);
+        startActivity(intent);
     }
 
     @Override
@@ -71,6 +77,7 @@ public class CardInsert extends AppCompatActivity {
         Intent intent = getIntent();
         this.paymentInformations = intent.getParcelableExtra("PaymentInfo");//Getting the payment info
         this.userInfos = intent.getParcelableExtra("UserInfo");//Getting the user info
+        this.storeCashback = intent.getDoubleExtra("StoreCashback",0);//Getting the store cashback info
         String userName = userInfos.getName();
         TextView greetingText = (TextView) findViewById(R.id.greetingText);
         greetingText.setText("Olá, " + userName);

@@ -17,18 +17,20 @@ public class UserSearch extends AppCompatActivity {
         //connect to API to find user cpf in DB
         //userInfos = new UserInfos("Rodrigo",userCpf,false);
         //userInfos = new UserInfos("Rodrigo",userCpf,true,true);
-        this.userInfos = new UserInfos("Rodrigo",this.userCpf,true,false,2);
+        this.userInfos = new UserInfos("Rodrigo",this.userCpf,true,false,2.50);
         return true; //return true if found, false if not
     }
     private double findStoreCashback(){
         //connect to API to find store cashback;
+        this.storeCashback = 10;
         return 10;
     }
 
     public void pagePassStub2(){
         Intent intent = new Intent(UserSearch.this,CardInsert.class);
-        intent.putExtra("PaymentInfo",this.paymentInformations);
-        intent.putExtra("UserInfo",this.userInfos);
+        intent.putExtra("PaymentInfo", this.paymentInformations);
+        intent.putExtra("UserInfo", this.userInfos);
+        intent.putExtra("StoreCashback", this.storeCashback);
         startActivity(intent);
     }
 
@@ -37,6 +39,7 @@ public class UserSearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_search);
         setTitle("");
+        this.storeCashback = 0;
         Intent intent = getIntent();
         this.paymentInformations = intent.getParcelableExtra("PaymentInfo");
         this.userCpf = intent.getStringExtra("Cpf");

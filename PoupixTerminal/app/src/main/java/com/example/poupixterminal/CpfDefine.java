@@ -89,7 +89,6 @@ public class CpfDefine extends AppCompatActivity {
         for(int i = 0; i < buttonsLayout.getChildCount(); i++){
             if(buttonsLayout.getChildAt(i).getTag().toString().equals("c")){//If it is a constraint layout
                 ConstraintLayout c = (ConstraintLayout) buttonsLayout.getChildAt(i);
-                Log.i("aaa","aaaa");
                 for(int j = 0; j < c.getChildCount(); j++){
                     Button button = (Button) c.getChildAt(j);
                     if(button.getTag().toString().equals("erase")){//If it's a number
@@ -111,7 +110,7 @@ public class CpfDefine extends AppCompatActivity {
     private View.OnClickListener jumpButton = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-           UserInfos userInfos = new UserInfos("Usuário","12345678900",false);
+           UserInfos userInfos = new UserInfos("Usuário","naotemcpf",false);
            PaymentInformations paymentInformations = getPaymentInformations();
            Intent intent = new Intent(CpfDefine.this, CardInsert.class);
            intent.putExtra("PaymentInfo",paymentInformations);

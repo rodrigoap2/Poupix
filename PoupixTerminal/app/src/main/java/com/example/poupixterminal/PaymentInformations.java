@@ -8,6 +8,8 @@ public class PaymentInformations implements Parcelable {
     private String paymentMethod;
     private boolean directPayment;
     private int parcells;
+    private double cashbackValue;
+    private double microInvestimentValue;
 
     public PaymentInformations() {
     }
@@ -17,6 +19,8 @@ public class PaymentInformations implements Parcelable {
         paymentMethod = in.readString();
         directPayment = in.readByte() != 0;
         parcells = in.readInt();
+        cashbackValue = in.readDouble();
+        microInvestimentValue = in.readDouble();
     }
 
     public static final Creator<PaymentInformations> CREATOR = new Creator<PaymentInformations>() {
@@ -63,6 +67,22 @@ public class PaymentInformations implements Parcelable {
         this.parcells = parcells;
     }
 
+    public double getCashbackValue() {
+        return cashbackValue;
+    }
+
+    public void setCashbackValue(double cashbackValue) {
+        this.cashbackValue = cashbackValue;
+    }
+
+    public double getMicroInvestimentValue() {
+        return microInvestimentValue;
+    }
+
+    public void setMicroInvestimentValue(double microInvestimentValue) {
+        this.microInvestimentValue = microInvestimentValue;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -74,5 +94,7 @@ public class PaymentInformations implements Parcelable {
         parcel.writeString(paymentMethod);
         parcel.writeByte((byte) (directPayment ? 1 : 0));
         parcel.writeInt(parcells);
+        parcel.writeDouble(cashbackValue);
+        parcel.writeDouble(microInvestimentValue);
     }
 }
