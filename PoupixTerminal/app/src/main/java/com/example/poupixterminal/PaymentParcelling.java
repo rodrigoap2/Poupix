@@ -5,7 +5,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -75,7 +74,7 @@ public class PaymentParcelling extends AppCompatActivity {
                 Toast.makeText(PaymentParcelling.this, "O valor de parcelas ultrapassa o máximo, que é " + getMaxParcels(), Toast.LENGTH_SHORT).show();
             }
             setParcelNumber("" + value); //Updating the parcel number
-            editParcelNumber();
+            editTextField(R.id.parcelNumber,getParcelNumber());
         }
     };
 
@@ -89,7 +88,7 @@ public class PaymentParcelling extends AppCompatActivity {
                 actualValue = actualValue.substring(0,actualValue.length()-1);
             }
             setParcelNumber(actualValue); //Updating the parcel number
-            editParcelNumber();
+            editTextField(R.id.parcelNumber,getParcelNumber());
         }
     };
 
@@ -106,9 +105,9 @@ public class PaymentParcelling extends AppCompatActivity {
         }
     };
 
-    public void editParcelNumber(){
-        TextView parcelText = (TextView) findViewById(R.id.parcelNumber);
-        parcelText.setText(this.parcelNumber);//Updating the parcel number text
+    public void editTextField(int textToBeEdited, String text){
+        TextView editText = (TextView) findViewById(textToBeEdited);
+        editText.setText(text);//Updating the parcel number text;
     }
 
     public void setNumberButtonsOnClick(){
@@ -136,7 +135,7 @@ public class PaymentParcelling extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_parcelling);
         setTitle("");
-        editParcelNumber();
+        editTextField(R.id.parcelNumber,getParcelNumber());
         Intent intent = getIntent();
         this.paymentInformations = intent.getParcelableExtra("PaymentInfo");
         TextView textView = (TextView) findViewById(R.id.transactionValueText);
