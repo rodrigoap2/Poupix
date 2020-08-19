@@ -36,6 +36,8 @@ public class PaymentProcessing extends AppCompatActivity {
             }
         }.start();
     }
+    @Override//Disabling back button
+    public void onBackPressed() { }
 
     public void goToStartPage(){
         Intent intent = new Intent(PaymentProcessing.this, MainActivity.class);
@@ -54,6 +56,7 @@ public class PaymentProcessing extends AppCompatActivity {
             //TODO Add rejected layout
         }
     }
+
     public void getInfos(Intent intent){
         this.paymentInformations = intent.getParcelableExtra("PaymentInfo");//Getting the payment info
         this.userInfos = intent.getParcelableExtra("UserInfo");//Getting the user info

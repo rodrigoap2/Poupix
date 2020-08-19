@@ -148,14 +148,15 @@ public class PasswordDeclaration extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             String actualPassword = creditCardInfos.getPassword();
-            actualPassword = actualPassword.substring(0,actualPassword.length()-1);
-            creditCardInfos.setPassword(actualPassword);
             String actualPasswordText = getPasswordText();
-            if(actualPasswordText.length() == 1){
+            if(actualPassword.length() == 1){
+                actualPassword = "";
                 actualPasswordText = "";
-            }else{
+            }else if(actualPassword.length() > 1){
+                actualPassword = actualPassword.substring(0,actualPassword.length()-1);
                 actualPasswordText = actualPasswordText.substring(0,actualPasswordText.length()-1);
             }
+            creditCardInfos.setPassword(actualPassword);
             setPasswordText(actualPasswordText);
             TextView passwordText = (TextView) findViewById(R.id.passwordText);
             passwordText.setText(getPasswordText());

@@ -40,13 +40,13 @@
         android:layout_width="114dp"
         android:layout_height="110dp"
         android:layout_centerInParent="true"
-        android:visibility="visible"
+        android:layout_marginTop="20dp"
         android:indeterminateTint="#FFB726"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/processingText" />
 
     <TextView
         android:id="@+id/processingText"
@@ -54,14 +54,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
         android:layout_marginLeft="176dp"
-        android:layout_marginTop="194dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="176dp"
         android:layout_marginRight="176dp"
-        android:layout_marginBottom="20dp"
         android:fontFamily="@font/opensans_regular"
         android:text="Buscando Usuário"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/progress_loader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
