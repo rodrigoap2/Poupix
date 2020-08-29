@@ -1,3 +1,34 @@
 micronaut:
   application:
     name: api
+  security:
+    enabled: true
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: ${JWT_SECRET}
+              base64: true
+              jws-algorithm: HS256
+        enabled: true
+        generator:
+          access-token-expiration: 86400 #1 day
+    endpoints:
+      login:
+        enabled: true
+datasources:
+  default:
+    url: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driverClassName: org.postgresql.Driver
+jpa:
+  default:
+    packages-to-scan:
+      - 'poupix.person.dal.model'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none

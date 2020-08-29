@@ -3,7 +3,7 @@ CREATE TABLE person (
     name TEXT,
     email TEXT,
     password TEXT,
-    birth_date TIMESTAMP
+    birth_date DATE
 );
 
 CREATE TABLE account (

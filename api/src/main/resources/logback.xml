@@ -9,6 +9,17 @@
         </encoder>
     </appender>
 
+    <!--    Logging SQL parameters below  -->
+<!--        <logger name="org.hibernate.SQL" additivity="false" >-->
+<!--            <level value="DEBUG" />-->
+<!--            <appender-ref ref="STDOUT" />-->
+<!--        </logger>-->
+
+<!--        <logger name="org.hibernate.type.descriptor.sql" additivity="false" >-->
+<!--            <level value="TRACE" />-->
+<!--            <appender-ref ref="STDOUT" />-->
+<!--        </logger>-->
+
     <root level="info">
         <appender-ref ref="STDOUT" />
     </root>

@@ -2,6 +2,7 @@ plugins {
     id "com.diffplug.eclipse.apt" version "3.22.0"
     id "com.github.johnrengelman.shadow" version "6.0.0"
     id "application"
+    id "com.github.sherter.google-java-format" version "0.8"
 }
 
 version "0.1"
@@ -19,15 +20,25 @@ configurations {
 
 dependencies {
     annotationProcessor(platform("io.micronaut:micronaut-bom:$micronautVersion"))
+    annotationProcessor "org.projectlombok:lombok:1.18.12"
     annotationProcessor("io.micronaut:micronaut-inject-java")
     annotationProcessor("io.micronaut:micronaut-validation")
+    annotationProcessor "io.micronaut.data:micronaut-data-processor:1.1.0"
+    compileOnly "org.projectlombok:lombok:1.18.12"
     implementation(platform("io.micronaut:micronaut-bom:$micronautVersion"))
     implementation("io.micronaut:micronaut-inject")
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut:micronaut-http-server-netty")
     implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut.security:micronaut-security-jwt")
+    implementation("io.micronaut.security:micronaut-security-annotations")
+    implementation "de.huxhorn.sulky:de.huxhorn.sulky.ulid:8.2.0"
+    implementation "io.micronaut.data:micronaut-data-hibernate-jpa:1.1.0"
+    implementation "io.micronaut.configuration:micronaut-jdbc-hikari:2.2.6"
+    implementation "com.vladmihalcea:hibernate-types-52:2.9.12"
     runtimeOnly("ch.qos.logback:logback-classic")
+    runtimeOnly 'org.postgresql:postgresql:42.2.4'
     testAnnotationProcessor(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
     testAnnotationProcessor("io.micronaut:micronaut-inject-java")
     testImplementation(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
