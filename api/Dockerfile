@@ -1,4 +1,4 @@
-FROM openjdk:14-alpine
+FROM openjdk:8-jdk-slim
 COPY build/libs/api-*-all.jar api.jar
 EXPOSE 8080
 CMD ["java", "-Dcom.sun.management.jmxremote", "-Xmx128m", "-jar", "api.jar"]

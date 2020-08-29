@@ -1,0 +1,40 @@
+version: '3'
+services:
+  api:
+    container_name: api
+    build:
+      context: api/.
+    restart: always
+    ports:
+    - 8080:8080
+  couchbase:
+    container_name: couchbase
+    image: couchbase:community-6.5.1
+    ports:
+    - 8091:8091
+    - 8094:8094
+    volumes:
+    - couchbase
+  flyway:
+    container_name: flyway_migrations
+    image: flyway/flyway:6.5
+    env_file:
+      - postgres/dev.env
+    command: migrate
+    volumes:
+      - ./postgres/flyway/migrations/:/flyway/sql
+      - ./postgres/flyway/config/:/flyway/conf
+    depends_on:
+      - postgres
+  postgres:
+    container_name: postgres
+    image: postgres:12.3
+    env_file:
+      - postgres/dev.env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+volumes:
+  couchbase:
+  postgres:
