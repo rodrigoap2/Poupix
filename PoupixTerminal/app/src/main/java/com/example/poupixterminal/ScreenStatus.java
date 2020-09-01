@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.List;
 
+import br.com.paxbr.easypaymentpos.POSConfig;
 import br.com.paxbr.easypaymentpos.domain.Product;
 
 public class ScreenStatus {
@@ -21,6 +22,7 @@ public class ScreenStatus {
     private boolean showingApprovedScreen;
     private boolean showingRejectedScreen;
     private boolean showingPasswordScreen;
+    private boolean showingApplicationsScreen;
 
     public ScreenStatus(Activity activity) {
         this.activity = activity;
@@ -31,6 +33,7 @@ public class ScreenStatus {
         this.showingApprovedScreen = false;
         this.showingRejectedScreen = false;
         this.showingPasswordScreen = false;
+        this.showingApplicationsScreen = false;
     }
 
     public void hideAllScreens(){
@@ -54,6 +57,9 @@ public class ScreenStatus {
         }
         if(showingPasswordScreen){
             hidePasswordScreen();
+        }
+        if(showingApplicationsScreen){
+            hideApplicationsScreen();
         }
     }
 
@@ -152,5 +158,22 @@ public class ScreenStatus {
         microInvestimentValueText.setVisibility(View.VISIBLE);
         ConstraintLayout totalValueConstraint = (ConstraintLayout) activity.findViewById(R.id.passwordValueLayout);
         totalValueConstraint.setVisibility(View.INVISIBLE);
+    }
+    public void showApplicationsScreen(List <String> applications, POSConfig config){
+        TextView methodText = activity.findViewById(R.id.MethodChoose);
+        methodText.setText("Escolha sua forma de pagamento");
+        methodText.setVisibility(View.VISIBLE);
+        ListView l = (ListView) activity.findViewById(R.id.cardPaymentMethods);
+        CustomizedApplicationAdapter customizedApplicationAdapter = new CustomizedApplicationAdapter(activity, R.layout.custom_list, applications, config);
+        l.setAdapter(customizedApplicationAdapter);
+        l.setVisibility(View.VISIBLE);
+        this.showingApplicationsScreen = true;
+    }
+    public void hideApplicationsScreen(){
+        TextView methodText = activity.findViewById(R.id.MethodChoose);
+        methodText.setVisibility(View.INVISIBLE);
+        ListView l = (ListView) activity.findViewById(R.id.cardPaymentMethods);
+        l.setVisibility(View.INVISIBLE);
+        this.showingApplicationsScreen = false;
     }
 }

@@ -21,20 +21,19 @@ import java.util.List;
 import br.com.paxbr.easypaymentpos.POSConfig;
 import br.com.paxbr.easypaymentpos.domain.Product;
 
-public class CustomizedMethodAdapter extends ArrayAdapter<Product> {
-    public List <Product> products;
+public class CustomizedApplicationAdapter extends ArrayAdapter<String> {
+    public List <String> products;
     public POSConfig config;
     Context context;
     int resource;
     ScreenStatus screenStatus;
 
-    public CustomizedMethodAdapter(@NonNull Context context, int resource, List<Product> products, POSConfig config, ScreenStatus screenStatus, BonusValueCalculator bonusValueCalculator) {
+    public CustomizedApplicationAdapter(@NonNull Context context, int resource, List<String> products, POSConfig config) {
         super(context, resource, products);
         this.products = products;
         this.context = context;
         this.resource = resource;
         this.config = config;
-        this.screenStatus = screenStatus;
     }
 
     @NonNull
@@ -45,16 +44,17 @@ public class CustomizedMethodAdapter extends ArrayAdapter<Product> {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         //getting the view
         final View view = layoutInflater.inflate(resource, null, false);
-        Button methodButton = view.findViewById(R.id.methodNameButton);
-        methodButton.setOnClickListener(new View.OnClickListener() {
+        Button applicationButton = view.findViewById(R.id.methodNameButton);
+        applicationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                config.response(products.get(position));
+                Toast.makeText(context, "" + position, Toast.LENGTH_SHORT).show();
+                config.select(position+1);
             }
         });
         //getting the product and setting button's name as the name of the method
-        Product product = products.get(position);
-        methodButton.setText(product.getLabelName());
+        String application = products.get(position);
+        applicationButton.setText(application);
         return view;
     }
 }

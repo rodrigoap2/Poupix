@@ -13,6 +13,7 @@
         <activity android:name=".CardInsert" />
         <activity android:name=".UserSearch" />
         <activity android:name=".CpfDefine" />
+        <activity android:name=".PaymentParcelling"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

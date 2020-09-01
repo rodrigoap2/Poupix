@@ -45,12 +45,12 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_shop"
             android:drawablePadding="10dp"
             android:paddingTop="5dp"
-            android:text="Nome do estabelecimento"
+            android:text="Loja Poupix"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

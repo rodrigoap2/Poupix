@@ -3,7 +3,7 @@ package com.example.poupixterminal;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -158,7 +158,7 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
                     screenStatus.hideAllScreens();
                     switch (posObject.getPosInteraction()) {
                         case INSERT_AMOUNT:// Deve ser retornado o valor para a lib
-                            String value = paymentInformations.getValue().replace(",","");
+                            String value = bonusValueCalculator.getTotalValue().replace(",","");
                             long valueInCash = Long.parseLong(value.substring(3));
                             Toast.makeText(CardInsert.this, "" + valueInCash, Toast.LENGTH_SHORT).show();
                             config.response(valueInCash);
@@ -194,8 +194,7 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
                             Menu menu = (Menu) posObject.getAny();
                             List<String> applications = menu.obtemOpcoesMenu();
                             Toast.makeText(CardInsert.this, posObject.getPosInteraction().toString(), Toast.LENGTH_SHORT).show();
-                            //screenStatus.showMethodsScreen(applications);
-                            //config.select(1);//Exemplo de aplicacao selecionada
+                            screenStatus.showApplicationsScreen(applications, config);
                             break;
                         case REQUEST_EXPIRATION_DATE:
                         case OPERATION_REJECTED:
@@ -203,9 +202,19 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
                             break;
                         case OPERATION_APPROVED: //Deve ser exibido ao usuário o a string do objeto
                             screenStatus.showApprovedScreen();
+                            Toast.makeText(CardInsert.this, posObject.getAny().toString(), Toast.LENGTH_SHORT).show();
                             break;
                         case PRINT_RECEIPT://O usuario deve ser informado de um erro na impressão, geralmente associado a falta de papel
                             config.response(ResponseEnum.OK); //Quando o problema for soluciondo, envie um feedback a lib para continuar o processo transacional
+                            break;
+                        case INSTALLMENTS: //Deve ser solicitado ao usuário a quantidade de parcelas
+                            InstalmentsRange range = (InstalmentsRange) posObject.getAny(); //minimo e maximo de parcelas permitido
+                            range.getRange().getMin();//Min installment range
+                            Intent intent = new Intent(CardInsert.this,PaymentParcelling.class);
+                            intent.putExtra("maxParcel",Integer.parseInt(range.getRange().getMax()));
+                            intent.putExtra("minParcel",Integer.parseInt(range.getRange().getMin()));
+                            intent.putExtra("PaymentValue", bonusValueCalculator.getTotalValue());
+                            startActivityForResult(intent, 2);
                             break;
                         default://Os outros enums sao enviados afim de notificar a aplicacao em qual passo da transacao a lib se encontra
                             Toast.makeText(CardInsert.this, posObject.getPosInteraction().toString(), Toast.LENGTH_SHORT).show();
@@ -215,6 +224,18 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
             }
         });
 
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (2) : {
+                if (resultCode == Activity.RESULT_OK) {
+                    config.response(data.getStringExtra("Parcells"));
+                }
+                break;
+            }
+        }
     }
 
 }
