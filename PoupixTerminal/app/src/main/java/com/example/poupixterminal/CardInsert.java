@@ -29,6 +29,7 @@ import br.com.paxbr.easypaymentpos.controller.TransactionPOSKt;
 import br.com.paxbr.easypaymentpos.domain.InstalmentsRange;
 import br.com.paxbr.easypaymentpos.domain.Product;
 import br.com.paxbr.easypaymentpos.domain.ReceiptContent;
+import br.com.paxbr.easypaymentpos.domain.ResponseEnum;
 import br.com.paxbr.easypaymentpos.domain.TransactionInformation;
 import br.com.paxbr.easypaymentpos.domain.TransactionResult;
 import br.com.paxbr.easypaymentpos.domain.TypeOfTransactionEnum;
@@ -42,6 +43,7 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
     private double storeCashback;
     private boolean hasReturned = false;
     ScreenStatus screenStatus;
+    BonusValueCalculator bonusValueCalculator;
     public Product productChosen;
     public POSConfig config;
 
@@ -97,27 +99,20 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
                                     TransactionResult transactionResult = transaction.getTransactionResult();//Informacoes da ultima transacao
                                     assert transactionResult != null;
                                     Toast.makeText(CardInsert.this, "Transaction succeed TID:" + transactionResult.getTid(), Toast.LENGTH_SHORT).show();
-
                                     ReceiptPOS receiptPOS = new ReceiptPOS(CardInsert.this);
                                     ReceiptContent receiptContent = TransactionPOSKt.toObject(SharedPreferencesUtilKt.loadString("", CardInsert.this, ReceiptEnum.TRANSACTION.toString()));
 
                                     //receipts[0] = via do estabelecimento (já impressa pela lib)
                                     //receipts[1] = via do cliente
-                                    /*
                                     receiptPOS.print(receiptContent.receipts.get(1), new CallBackUser<Status>() {
                                         @Override
                                         public void onRequest(Status status) {
                                             if (splitMode) {
 
-                                                Intent intent = new Intent(CardInsert.this, SplitCardInsert.class);
-                                                intent.putExtra("tid", transaction.getTransactionResult().getTid());
-                                                startActivity(intent);
                                             }
                                             finish();
                                         }
                                     });
-                                    */
-
                                 } else {
                                     TransactionResult transactionResult = transaction.getTransactionResult();
                                     Toast.makeText(CardInsert.this, "Transaction error " + transactionResult, Toast.LENGTH_SHORT).show();
@@ -148,6 +143,8 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
         greetingText.setText("Olá, " + userName);
         Button backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(backButtonOnClick);
+        bonusValueCalculator = new BonusValueCalculator(paymentInformations.getValue(),this.storeCashback, this.userInfos);
+        bonusValueCalculator.calculateBonus();
         productChosen = new Product();
         transact(); //Incializando a transação
     }
@@ -170,8 +167,10 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
                             screenStatus.showCardInfo();
                             break;
                         case SHOW_MESSAGE://Deve ser exibido o valor do objeto para o usuário
-                            if(posObject.toString().equals("Processando...")){
+                            if(posObject.toString().equals("Processando...") || posObject.toString().equals("Atualizando tabelas")){
                                 screenStatus.showProcessingText();
+                            }else if(posObject.toString().equals("AGUARDE A SENHA")){
+                                screenStatus.showPasswordScreen(bonusValueCalculator.getTotalValue(), bonusValueCalculator.getCashbackValue(), bonusValueCalculator.getMicroInvestingValue());
                             }else{
                                 screenStatus.showRandomText(posObject.toString());
                             }
@@ -181,14 +180,13 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
                         case SELECT_PRODUCT://Exibir para o Usuario os produtos disponiveis para o seu cartao e terminal
                             final List<Product> products = (List<Product>) posObject.getAny();
                             Set<TypeOfTransactionEnum> types = ProductFormatKt.types(products);
-                            //Solicitar ao usuário que escolha um tipo (types)
                             final List<Product> products1 =  ProductFormatKt.filterType(products, types.iterator().next());
                             ListView l = (ListView) findViewById(R.id.cardPaymentMethods);
                             TextView methodText = findViewById(R.id.MethodChoose);
                             methodText.setText("Escolha seu método de pagamento");
                             methodText.setVisibility(View.VISIBLE);
                             screenStatus.showMethodsScreen();
-                            CustomizedMethodAdapter customizedMethodAdapter = new CustomizedMethodAdapter(CardInsert.this, R.layout.custom_list, products, config, screenStatus);
+                            CustomizedMethodAdapter customizedMethodAdapter = new CustomizedMethodAdapter(CardInsert.this, R.layout.custom_list, products, config, screenStatus, bonusValueCalculator);
                             l.setAdapter(customizedMethodAdapter);
                             l.setVisibility(View.VISIBLE);
                             break;
@@ -205,6 +203,9 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
                             break;
                         case OPERATION_APPROVED: //Deve ser exibido ao usuário o a string do objeto
                             screenStatus.showApprovedScreen();
+                            break;
+                        case PRINT_RECEIPT://O usuario deve ser informado de um erro na impressão, geralmente associado a falta de papel
+                            config.response(ResponseEnum.OK); //Quando o problema for soluciondo, envie um feedback a lib para continuar o processo transacional
                             break;
                         default://Os outros enums sao enviados afim de notificar a aplicacao em qual passo da transacao a lib se encontra
                             Toast.makeText(CardInsert.this, posObject.getPosInteraction().toString(), Toast.LENGTH_SHORT).show();

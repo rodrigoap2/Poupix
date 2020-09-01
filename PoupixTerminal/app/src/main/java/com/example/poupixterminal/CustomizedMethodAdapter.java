@@ -24,17 +24,19 @@ import br.com.paxbr.easypaymentpos.domain.Product;
 public class CustomizedMethodAdapter extends ArrayAdapter<Product> {
     public List <Product> products;
     public POSConfig config;
+    public BonusValueCalculator bonusValueCalculator;
     Context context;
     int resource;
     ScreenStatus screenStatus;
 
-    public CustomizedMethodAdapter(@NonNull Context context, int resource, List<Product> products, POSConfig config, ScreenStatus screenStatus) {
+    public CustomizedMethodAdapter(@NonNull Context context, int resource, List<Product> products, POSConfig config, ScreenStatus screenStatus, BonusValueCalculator bonusValueCalculator) {
         super(context, resource, products);
         this.products = products;
         this.context = context;
         this.resource = resource;
         this.config = config;
         this.screenStatus = screenStatus;
+        this.bonusValueCalculator = bonusValueCalculator;
     }
 
     @NonNull
@@ -49,7 +51,6 @@ public class CustomizedMethodAdapter extends ArrayAdapter<Product> {
         methodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                screenStatus.hideMethodsScreen();
                 config.response(products.get(position));
             }
         });

@@ -20,6 +20,7 @@ public class ScreenStatus {
     private boolean showingPaymentsMethods;
     private boolean showingApprovedScreen;
     private boolean showingRejectedScreen;
+    private boolean showingPasswordScreen;
 
     public ScreenStatus(Activity activity) {
         this.activity = activity;
@@ -29,6 +30,7 @@ public class ScreenStatus {
         this.showingPaymentsMethods = false;
         this.showingApprovedScreen = false;
         this.showingRejectedScreen = false;
+        this.showingPasswordScreen = false;
     }
 
     public void hideAllScreens(){
@@ -49,6 +51,9 @@ public class ScreenStatus {
         }
         if(showingRejectedScreen){
             hideRejectedScreen();
+        }
+        if(showingPasswordScreen){
+            hidePasswordScreen();
         }
     }
 
@@ -118,5 +123,34 @@ public class ScreenStatus {
         ConstraintLayout reprovedScreen = (ConstraintLayout) this.activity.findViewById(R.id.reprovedLayout);
         reprovedScreen.setVisibility(View.INVISIBLE);
         this.showingRejectedScreen = false;
+    }
+    public void showPasswordScreen(String totalValue, String cashbackValue, String microInvestimentValue){
+        TextView totalValueText = (TextView) activity.findViewById(R.id.transactionValueText2);
+        totalValueText.setText(totalValue);
+        totalValueText.setVisibility(View.VISIBLE);
+        TextView MethodText = (TextView) activity.findViewById(R.id.MethodChoose);
+        MethodText.setText("Valor da transação");
+        MethodText.setVisibility(View.VISIBLE);
+        TextView cashbackValueText = (TextView) activity.findViewById(R.id.cashbackValue);
+        cashbackValueText.setText("Valor do cashback: " + cashbackValue);
+        cashbackValueText.setVisibility(View.VISIBLE);
+        TextView microInvestimentValueText = (TextView) activity.findViewById(R.id.microInvestValue);
+        microInvestimentValueText.setText("Valor do micro-investimento: " + microInvestimentValue);
+        microInvestimentValueText.setVisibility(View.VISIBLE);
+        ConstraintLayout totalValueConstraint = (ConstraintLayout) activity.findViewById(R.id.passwordValueLayout);
+        totalValueConstraint.setVisibility(View.VISIBLE);
+        showingPasswordScreen = true;
+    }
+    public void hidePasswordScreen(){
+        TextView totalValueText = (TextView) activity.findViewById(R.id.transactionValueText2);
+        totalValueText.setVisibility(View.INVISIBLE);
+        TextView MethodText = (TextView) activity.findViewById(R.id.MethodChoose);
+        MethodText.setVisibility(View.INVISIBLE);
+        TextView cashbackValueText = (TextView) activity.findViewById(R.id.cashbackValue);
+        cashbackValueText.setVisibility(View.INVISIBLE);
+        TextView microInvestimentValueText = (TextView) activity.findViewById(R.id.microInvestValue);
+        microInvestimentValueText.setVisibility(View.VISIBLE);
+        ConstraintLayout totalValueConstraint = (ConstraintLayout) activity.findViewById(R.id.passwordValueLayout);
+        totalValueConstraint.setVisibility(View.INVISIBLE);
     }
 }
