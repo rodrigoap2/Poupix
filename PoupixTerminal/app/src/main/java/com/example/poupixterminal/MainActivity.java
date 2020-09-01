@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public void confirmValue(View view){
         PaymentInformations paymentInformations = new PaymentInformations();
         paymentInformations.setValue(formattedTransactionValue);//Passing to the info object the value of the transaction
-        Intent intent = new Intent(MainActivity.this,PaymentMethodChoice.class);
+        Intent intent = new Intent(MainActivity.this,CpfDefine.class);
         intent.putExtra("PaymentInfo",paymentInformations); //Putting the object into the intent
         startActivity(intent); //Passing to the paymentMethodActivity
     }

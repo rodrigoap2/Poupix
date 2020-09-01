@@ -14,18 +14,19 @@ public class UserSearch extends AppCompatActivity {
     private String userCpf;
     private double storeCashback;
     private UserInfos userInfos;
+
     @Override//Disabling back button
     public void onBackPressed() { }
 
     private boolean findUserCpf(){
-        //connect to API to find user cpf in DB
+        //TODO connect to API to find user cpf in DB
         //userInfos = new UserInfos("Rodrigo",userCpf,false);
         //userInfos = new UserInfos("Rodrigo",userCpf,true,true);
         this.userInfos = new UserInfos("Rodrigo",this.userCpf,true,false,2.50);
         return true; //return true if found, false if not
     }
     private double findStoreCashback(){
-        //connect to API to find store cashback;
+        //TODO connect to API to find store cashback;
         this.storeCashback = 10;
         return 10;
     }

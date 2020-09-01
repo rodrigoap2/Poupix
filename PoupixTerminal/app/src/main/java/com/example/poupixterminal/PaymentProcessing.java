@@ -13,7 +13,6 @@ import android.widget.TextView;
 public class PaymentProcessing extends AppCompatActivity {
     private PaymentInformations paymentInformations;
     private UserInfos userInfos;
-    private CreditCardInfos creditCardInfos;
     private double storeCashback;
 
     public void processPayment(){
@@ -60,7 +59,6 @@ public class PaymentProcessing extends AppCompatActivity {
     public void getInfos(Intent intent){
         this.paymentInformations = intent.getParcelableExtra("PaymentInfo");//Getting the payment info
         this.userInfos = intent.getParcelableExtra("UserInfo");//Getting the user info
-        this.creditCardInfos = intent.getParcelableExtra("CreditCardInfo");//Getting the creditCard info
         this.storeCashback = intent.getDoubleExtra("StoreCashback",0);//Getting the cashback info
     }
     @Override
@@ -70,6 +68,5 @@ public class PaymentProcessing extends AppCompatActivity {
         setTitle("");
         Intent intent = getIntent();
         getInfos(intent);
-        processPayment();
     }
 }
