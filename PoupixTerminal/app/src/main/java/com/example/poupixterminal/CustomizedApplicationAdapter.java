@@ -48,7 +48,7 @@ public class CustomizedApplicationAdapter extends ArrayAdapter<String> {
         applicationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "" + position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "" + position, Toast.LENGTH_SHORT).show();
                 config.select(position+1);
             }
         });

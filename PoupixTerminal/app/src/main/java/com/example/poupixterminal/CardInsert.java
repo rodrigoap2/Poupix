@@ -193,7 +193,7 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
                         case SELECT_APPLICATION://Exibir para o usuario as opcoes de aplicacoes fornecidas pelo cartao, como ['Credito','Debito']
                             Menu menu = (Menu) posObject.getAny();
                             List<String> applications = menu.obtemOpcoesMenu();
-                            Toast.makeText(CardInsert.this, posObject.getPosInteraction().toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(CardInsert.this, posObject.getPosInteraction().toString(), Toast.LENGTH_SHORT).show();
                             screenStatus.showApplicationsScreen(applications, config);
                             break;
                         case REQUEST_EXPIRATION_DATE:
@@ -202,7 +202,7 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
                             break;
                         case OPERATION_APPROVED: //Deve ser exibido ao usuário o a string do objeto
                             screenStatus.showApprovedScreen();
-                            Toast.makeText(CardInsert.this, posObject.getAny().toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(CardInsert.this, posObject.getAny().toString(), Toast.LENGTH_SHORT).show();
                             break;
                         case PRINT_RECEIPT://O usuario deve ser informado de um erro na impressão, geralmente associado a falta de papel
                             config.response(ResponseEnum.OK); //Quando o problema for soluciondo, envie um feedback a lib para continuar o processo transacional
