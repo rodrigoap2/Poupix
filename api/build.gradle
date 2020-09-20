@@ -37,6 +37,7 @@ dependencies {
     implementation "io.micronaut.data:micronaut-data-hibernate-jpa:1.1.0"
     implementation "io.micronaut.configuration:micronaut-jdbc-hikari:2.2.6"
     implementation "com.vladmihalcea:hibernate-types-52:2.9.12"
+    implementation "com.couchbase.client:java-client:3.0.8"
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly 'org.postgresql:postgresql:42.2.4'
     testAnnotationProcessor(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))

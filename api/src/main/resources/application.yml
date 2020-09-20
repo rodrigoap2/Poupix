@@ -18,6 +18,9 @@ micronaut:
     endpoints:
       login:
         enabled: true
+couchbase:
+  user: ${COUCHBASE_USER}
+  password: ${COUCHBASE_PASSWORD}
 datasources:
   default:
     url: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
