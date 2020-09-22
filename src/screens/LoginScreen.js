@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView} from 'react-native';
 import { Text, Button, Input } from 'react-native-elements';
 import Spacer from '../components/Spacer';
 
@@ -8,7 +8,7 @@ const LoginScreen = ({navigation}) => {
     const [password, setPassword] = useState('');
 
     const validateCpf = (cpf) => {
-        if (/^\d+$/.test(cpf)) {
+        if (/^\d+$/.test(cpf) || cpf == '') {
           setCpf(cpf)
         }
     }
