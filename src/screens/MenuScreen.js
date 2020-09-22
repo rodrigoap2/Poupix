@@ -11,9 +11,14 @@ const MenuScreen = ({navigation}) => {
                 title="Go to Goals"
             />
             <Button
+                onPress={() => navigation.navigate('MicroInvesting')}
+                title="Go to Micro Investing"
+            />
+            <Button
                 onPress={() => navigation.navigate('Stores')}
                 title="Go to Stores"
             />
+            
         </View>
     )
 }

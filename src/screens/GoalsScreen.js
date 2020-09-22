@@ -6,10 +6,6 @@ const GoalsScreen = ({navigation}) => {
     return(
         <View>
             <Text style={styles.title}>GoalsScreen</Text>
-            <Button
-                onPress={() => navigation.navigate('GoalDetail')}
-                title="Go to Goal Detail"
-            />
         </View>
     )
 }

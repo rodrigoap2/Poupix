@@ -1,10 +1,10 @@
 import React from 'react'
 import {Text, View, StyleSheet} from 'react-native'
 
-const GoalDetailScreen = ({navigation}) => {
+const MicroInvestingScreen = ({navigation}) => {
     return(
         <View>
-            <Text style={styles.title}>GoalDetailScreen</Text>
+            <Text style={styles.title}>MicroInvestingScreen</Text>
         </View>
     )
 }
@@ -15,4 +15,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default GoalDetailScreen;
+export default MicroInvestingScreen;
