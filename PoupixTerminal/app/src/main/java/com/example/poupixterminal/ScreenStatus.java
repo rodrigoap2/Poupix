@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.util.HashMap;
 import java.util.List;
 
 import br.com.paxbr.easypaymentpos.POSConfig;
@@ -23,6 +24,7 @@ public class ScreenStatus {
     private boolean showingRejectedScreen;
     private boolean showingPasswordScreen;
     private boolean showingApplicationsScreen;
+    private boolean showingRemoveCardScreen;
 
     public ScreenStatus(Activity activity) {
         this.activity = activity;
@@ -61,6 +63,9 @@ public class ScreenStatus {
         if(showingApplicationsScreen){
             hideApplicationsScreen();
         }
+        if(showingRemoveCardScreen){
+            hideRemoveCard();
+        }
     }
 
     public void hideCardInfo(){
@@ -74,6 +79,7 @@ public class ScreenStatus {
         ImageView cardImage = (ImageView) this.activity.findViewById(R.id.payCardImage);
         cardImage.setVisibility(View.VISIBLE);
         TextView insertText = (TextView) this.activity.findViewById(R.id.MethodChoose);
+        insertText.setText("Insira ou passe o seu cartão");
         insertText.setVisibility(View.VISIBLE);
         this.showingCardScreen = true;
     }
@@ -175,5 +181,20 @@ public class ScreenStatus {
         ListView l = (ListView) activity.findViewById(R.id.cardPaymentMethods);
         l.setVisibility(View.INVISIBLE);
         this.showingApplicationsScreen = false;
+    }
+    public void showRemoveCard(){
+        ImageView cardImage = (ImageView) this.activity.findViewById(R.id.payCardImage);
+        cardImage.setVisibility(View.VISIBLE);
+        TextView insertText = (TextView) this.activity.findViewById(R.id.MethodChoose);
+        insertText.setText("Remova seu cartão");
+        insertText.setVisibility(View.VISIBLE);
+        this.showingRemoveCardScreen = true;
+    }
+    public void hideRemoveCard(){
+        ImageView cardImage = (ImageView) this.activity.findViewById(R.id.payCardImage);
+        cardImage.setVisibility(View.INVISIBLE);
+        TextView insertText = (TextView) this.activity.findViewById(R.id.MethodChoose);
+        insertText.setVisibility(View.INVISIBLE);
+        this.showingRemoveCardScreen = false;
     }
 }

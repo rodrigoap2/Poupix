@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -101,7 +100,6 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
                                     Toast.makeText(CardInsert.this, "Transaction succeed TID:" + transactionResult.getTid(), Toast.LENGTH_SHORT).show();
                                     ReceiptPOS receiptPOS = new ReceiptPOS(CardInsert.this);
                                     ReceiptContent receiptContent = TransactionPOSKt.toObject(SharedPreferencesUtilKt.loadString("", CardInsert.this, ReceiptEnum.TRANSACTION.toString()));
-
                                     //receipts[0] = via do estabelecimento (já impressa pela lib)
                                     //receipts[1] = via do cliente
                                     receiptPOS.print(receiptContent.receipts.get(1), new CallBackUser<Status>() {
@@ -175,6 +173,8 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
                                 screenStatus.showRandomText(posObject.toString());
                             }
                             break;
+                        case SENDING_TRANSACTION:
+                            screenStatus.showProcessingText();
                         case PROCESSING:
                             screenStatus.showProcessingText();
                         case SELECT_PRODUCT://Exibir para o Usuario os produtos disponiveis para o seu cartao e terminal
@@ -204,6 +204,8 @@ public class CardInsert extends AppCompatActivity implements CallBackUser<Object
                             screenStatus.showApprovedScreen();
                             //Toast.makeText(CardInsert.this, posObject.getAny().toString(), Toast.LENGTH_SHORT).show();
                             break;
+                        case REMOVE_CARD:
+                            screenStatus.showCardInfo();
                         case PRINT_RECEIPT://O usuario deve ser informado de um erro na impressão, geralmente associado a falta de papel
                             config.response(ResponseEnum.OK); //Quando o problema for soluciondo, envie um feedback a lib para continuar o processo transacional
                             break;
