@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, KeyboardAvoidingView} from 'react-native';
+import React, { useState, useContext } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { Text, Button, Input } from 'react-native-elements';
 import Spacer from '../components/Spacer';
+import { Context as AuthContext } from '../context/AuthContext'
+import { NavigationEvents } from 'react-navigation';
 
 const LoginScreen = ({navigation}) => {
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
+    const { state, signIn, clearErrorMessage } = useContext(AuthContext);
 
     const validateCpf = (cpf) => {
         if (/^\d+$/.test(cpf) || cpf == '') {
@@ -15,6 +18,7 @@ const LoginScreen = ({navigation}) => {
 
     return(
         <View style={styles.container}>
+            <NavigationEvents onWillFocus={clearErrorMessage} />
             <Spacer>
                 <Text style={styles.title}>Poupix</Text>
             </Spacer>
@@ -41,11 +45,12 @@ const LoginScreen = ({navigation}) => {
                         autoCorrect={false}
                     />
                 </Spacer>
+                {state.errorMessage ? <Text style={styles.errorMessage}>{state.errorMessage}</Text> : null}
                 <Spacer>
                     <Button
                     title="Entrar"
                     buttonStyle={styles.signInButton}
-                    onPress={() => navigation.navigate('Menu')}
+                    onPress={() => signIn({cpf, password})}
                     />
                 </Spacer>
             </View>
@@ -85,6 +90,11 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         borderRadius: 10,
         marginHorizontal: 100,
+    },
+    errorMessage: {
+        fontSize: 16,
+        color: 'red',
+        textAlign: 'center'
     }
 });
 

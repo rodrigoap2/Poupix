@@ -1,7 +1,7 @@
-/*
 import {AsyncStorage} from 'react-native';
 import createDataContext from './createDataContext';
 import { navigate } from '../navigationRef';
+import poupixApi from '../api/poupixApi'
 
 const authReducer = (state, action) => {
     switch(action.type){
@@ -9,52 +9,44 @@ const authReducer = (state, action) => {
             return {...state, errorMessage: action.payload};
         case 'signin':
             return { errorMessage: '', token: action.payload};
-        case 'clear_error_message':
-            return { ...state, errorMessage: '' };
         case 'signout':
             return {token: null, errorMessage: ''};
+        case 'clear_error_message':
+            return { ...state, errorMessage: '' };
         default:
             return state;
     }
 }
+
+const clearErrorMessage = dispatch => () => {
+    dispatch({ type: 'clear_error_message' });
+};
+
 
 const tryLocalSignIn = (dispatch) => {
     return async () => {
         const token = await AsyncStorage.getItem('token')
         if(token){
             dispatch({ type:'signin', payload: token })
-            navigate('TrackList')
+            navigate('mainFlow')
         }else{
             navigate('loginFlow')
         }
     }
 }
 
-const clearErrorMessage = dispatch => () => {
-    dispatch({ type: 'clear_error_message' });
-  };
-
-const signUp = (dispatch) => {
-    return async ({ email, password }) => {
-        try{
-            const response = await trackerApi.post('/signup', {email, password})
-            await AsyncStorage.setItem('token', response.data.token)
-            dispatch({type: 'signin', payload: response.data.token});
-            navigate('TrackList')
-        }catch(err){
-            dispatch({ type: 'add_error', payload: 'Something went wrong with sign up'})
-        }
-    };
-}
-
 const signIn = (dispatch) => {
-    return async ({ email, password }) => {
+    return async ({ cpf, password }) => {
+        console.log(cpf)
+        console.log(password)
         try{
-            const response = await trackerApi.post('/signin', {email, password})
-            await AsyncStorage.setItem('token', response.data.token)
+            console.log('aff')
+            const response = await poupixApi.post('/login', {username: cpf, password})
+            await AsyncStorage.setItem('token', response.data.access_token)
             dispatch({type: 'signin', payload: response.data.token});
-            navigate('TrackList')
+            navigate('mainFlow')
         }catch(err){
+            console.log(err)
             dispatch({ type: 'add_error', payload: 'Something went wrong with sign in'})
         }
     };
@@ -70,6 +62,6 @@ const signOut = (dispatch) => {
 
 export const {Provider, Context} = createDataContext(
     authReducer,
-    {signIn, signOut, signUp, clearErrorMessage, tryLocalSignIn},
+    {signIn, signOut, tryLocalSignIn, clearErrorMessage},
     { token: null, errorMessage: '' }
-)*/
+)

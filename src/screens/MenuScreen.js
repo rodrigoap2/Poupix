@@ -1,13 +1,21 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import {Text, View, StyleSheet} from 'react-native'
-import {Button} from 'react-native-elements'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Spacer from '../components/Spacer';
+import MenuView from '../components/MenuView'
+import {Context as StoresContext} from '../context/StoresContext'
+import { FlatList, State } from 'react-native-gesture-handler';
+import MenuStores from '../components/MenuStores';
 
 
 const MenuScreen = ({navigation}) => {
     const name = 'Rodrigo'
+    const {state, getStores} = useContext(StoresContext)
+
+    useEffect(() => {
+        getStores()
+    },[])
+
     return(
         <View style={styles.container}>
             <SafeAreaView style={styles.topView}>
@@ -15,26 +23,26 @@ const MenuScreen = ({navigation}) => {
             </SafeAreaView>
             <View>
                 <Spacer/>
-                <TouchableOpacity onPress={() => navigation.navigate('Goals')}>
-                    <View style={styles.objectView}>
-                        <Text>Metas</Text>
-                        <Text style={styles.navigationButton}>Detalhes</Text>
-                    </View>
-                </TouchableOpacity>
+                <MenuView
+                onPress = {() => navigation.navigate('Goals')}
+                title = 'Metas'
+                buttonText = 'Detalhes'
+                component = {<Text>aaa</Text>}
+                />
                 <Spacer/>
-                <TouchableOpacity onPress={() => navigation.navigate('MicroInvesting')}>
-                    <View style={styles.objectView}>
-                        <Text>Micro-investimento</Text>
-                        <Text style={styles.navigationButton}>Ajustar</Text>
-                    </View>
-                </TouchableOpacity>
+                <MenuView
+                onPress = {() => navigation.navigate('MicroInvesting')}
+                title = 'Micro-investimento'
+                buttonText = 'Ajustar'
+                component = {<Text>aaa</Text>}
+                />
                 <Spacer/>
-                <TouchableOpacity onPress={() => navigation.navigate('Stores')}>
-                    <View style={styles.objectView}>
-                        <Text>Lojas em destaque</Text>
-                        <Text style={styles.navigationButton}>Ver mais</Text>
-                    </View>
-                </TouchableOpacity>
+                <MenuView
+                onPress = {() => navigation.navigate('Stores')}
+                title = 'Lojas em destaque'
+                buttonText = 'Ver mais' 
+                component = {<MenuStores stores={state.stores} />}  
+                />
             </View>
         </View>
     )
@@ -50,7 +58,8 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         color: '#FFFFFF',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: '5%'
     },
     topView: {
         backgroundColor: '#FFB726',
