@@ -40,7 +40,6 @@ const signIn = (dispatch) => {
         console.log(cpf)
         console.log(password)
         try{
-            console.log('aff')
             const response = await poupixApi.post('/login', {username: cpf, password})
             await AsyncStorage.setItem('token', response.data.access_token)
             dispatch({type: 'signin', payload: response.data.token});

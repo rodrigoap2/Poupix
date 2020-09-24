@@ -3,7 +3,6 @@ import { StyleSheet, View, Image } from 'react-native';
 import { Text } from 'react-native-elements';
 
 const SmallStoreDescription = ({store}) => {
-    console.log(store.image)
     return(
         <View style={styles.container}>
             <Image
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
         marginBottom: '5%'
     },
     storeName: {
-        fontWeight: 'bold',
+        fontWeight: 'bold'
     },
     cashback: {
         color: '#8F2BFA',

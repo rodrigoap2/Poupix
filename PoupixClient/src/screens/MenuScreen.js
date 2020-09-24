@@ -38,10 +38,10 @@ const MenuScreen = ({navigation}) => {
                 />
                 <Spacer/>
                 <MenuView
-                onPress = {() => navigation.navigate('Stores')}
+                onPress = {() => navigation.navigate('Lojas', { stores: state.stores }) }
                 title = 'Lojas em destaque'
                 buttonText = 'Ver mais' 
-                component = {<MenuStores stores={state.stores} />}  
+                component = {<MenuStores stores={state.stores.slice(0,3)} />} 
                 />
             </View>
         </View>

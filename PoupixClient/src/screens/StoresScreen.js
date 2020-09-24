@@ -1,15 +1,50 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Text, View, StyleSheet} from 'react-native'
-import {Button} from 'react-native-elements'
+import {Button, SearchBar} from 'react-native-elements'
+import MenuStores from '../components/MenuStores'
+import StoresList from '../components/StoresList'
+import {Context as StoresContext} from '../context/StoresContext'
 
 const StoresScreen = ({navigation}) => {
+    const [searchWord, setSearchWord] = useState('')
+    const stores = navigation.getParam('stores')
+    const [storesFiltered, setStoresFiltered] = useState([])
+
+    const transferStores = () => setStoresFiltered(stores)
+
+    useEffect(() => {
+        transferStores
+    },[])
+
+    const searchFilterFunction = text => {    
+        const newData = stores.filter(item => {   
+            console.log(item)
+          const itemData = `${item.name.toUpperCase()}   
+          ${item.type.toUpperCase()}`;
+          
+           const textData = text.toUpperCase();
+            
+           return itemData.indexOf(textData) > -1;    
+        });
+        setSearchWord(text)
+        setStoresFiltered(newData)
+    };
+
     return(
-        <View>
-            <Text style={styles.title}>StoresScreen</Text>
-            <Button
-                onPress={() => navigation.navigate('StoreDetail')}
-                title="Go to Store Detail Screen"
+        <View style={styles.container}>
+            <SearchBar
+                    placeholder=""
+                    onChangeText={(text) => searchFilterFunction(text)}
+                    value={searchWord}
+                    platform='ios'
+                    containerStyle={{backgroundColor: '#FAFAFA'}}
+                    inputContainerStyle={{backgroundColor: '#dae0e6', borderWidth: 2, borderColor:'transparent', borderRadius: 30}}
             />
+            <View style={{flexGrow: 1}}>
+                <StoresList
+                stores={storesFiltered}
+                />
+            </View>
         </View>
     )
 }
@@ -17,6 +52,10 @@ const StoresScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     title: {
         fontSize: 48
+    },
+    container: {
+        backgroundColor: '#FAFAFA',
+        flexGrow: 1
     }
 });
 

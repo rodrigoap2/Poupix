@@ -18,15 +18,25 @@ const switchNavigator = createSwitchNavigator({
     Login: LoginScreen,
     Signup: SignUpScreen,
   }),
-  mainFlow: createStackNavigator({
+  mainFlow: createStackNavigator(
+    {
     Menu: MenuScreen,
     GoalsFlow: createBottomTabNavigator({
       Goals: GoalsScreen,
       MicroInvesting: MicroInvestingScreen,
     }),
-    Stores: StoresScreen,
+    Lojas: StoresScreen,
     StoreDetail: StoreDetailScreen,
-  }),
+    },
+    {
+      defaultNavigationOptions: {
+        headerTitleAlign: 'center',
+        headerStyle:{
+          shadowColor: 'transparent',
+          shadowRadius: 0
+        }
+      }
+    }),
 });
 
 const App = createAppContainer(switchNavigator);

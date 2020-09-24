@@ -1,29 +1,30 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler'
-import SmallStoreDescription from '../components/SmallStoreDescription'
+import StoreDescription from './StoreDescription'
 
-const MenuStores = ({stores}) => {
-    return(
-        <View>
+const StoresList = ({stores}) => {
+    console.log(stores)
+    return (
+    <View style={{flex: 1}}>
             <FlatList
                 data={stores}
+                style={{ marginBottom: 5}}
                 keyExtractor={(result) => result.id}
-                showsHorizontalScrollIndicator={false}
                 renderItem={( item ) => {
                     return (
-                    <SmallStoreDescription
+                    <StoreDescription
                     store={item.item}
                     />
                     );
                 }}
             />
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
 
 });
 
-export default MenuStores;
+export default StoresList;
