@@ -37,8 +37,6 @@ const tryLocalSignIn = (dispatch) => {
 
 const signIn = (dispatch) => {
     return async ({ cpf, password }) => {
-        console.log(cpf)
-        console.log(password)
         try{
             const response = await poupixApi.post('/login', {username: cpf, password})
             await AsyncStorage.setItem('token', response.data.access_token)

@@ -90,12 +90,12 @@ const getStores = (dispatch) => {
 }
 
 const getOneStore = (dispatch) => {
-    return async () => {
+    return async (id) => {
         try{
             //const response = await poupixApi.get('/stores/' + id)
             const store = {
                 'name': 'Mc Donalds',
-                'description': 'Seja feliz aqui na MC Donalds',
+                'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                 'cashback': {
                     'monday': 0.07,
                     'tuesday': 0.1,
@@ -112,7 +112,8 @@ const getOneStore = (dispatch) => {
                     'y' : -34.895319
                 }
             }
-            dispatch({type: 'get_one_store', payload: stores});
+            console.log(store + 'aaaaaaaaaaaaaa')
+            dispatch({type: 'get_one_store', payload: store});
         }catch(err){
             console.log('Erro na requisição de lojas')
         }

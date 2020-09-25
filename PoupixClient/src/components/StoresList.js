@@ -3,8 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler'
 import StoreDescription from './StoreDescription'
 
-const StoresList = ({stores}) => {
-    console.log(stores)
+const StoresList = ({stores, navigation}) => {
     return (
     <View style={{flex: 1}}>
             <FlatList
@@ -15,6 +14,7 @@ const StoresList = ({stores}) => {
                     return (
                     <StoreDescription
                     store={item.item}
+                    navigation = {navigation}
                     />
                     );
                 }}

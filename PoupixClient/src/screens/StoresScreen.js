@@ -8,7 +8,7 @@ import {Context as StoresContext} from '../context/StoresContext'
 const StoresScreen = ({navigation}) => {
     const [searchWord, setSearchWord] = useState('')
     const stores = navigation.getParam('stores')
-    const [storesFiltered, setStoresFiltered] = useState([])
+    const [storesFiltered, setStoresFiltered] = useState(stores)
 
     const transferStores = () => setStoresFiltered(stores)
 
@@ -18,7 +18,6 @@ const StoresScreen = ({navigation}) => {
 
     const searchFilterFunction = text => {    
         const newData = stores.filter(item => {   
-            console.log(item)
           const itemData = `${item.name.toUpperCase()}   
           ${item.type.toUpperCase()}`;
           
@@ -26,8 +25,8 @@ const StoresScreen = ({navigation}) => {
             
            return itemData.indexOf(textData) > -1;    
         });
-        setSearchWord(text)
-        setStoresFiltered(newData)
+            setStoresFiltered(newData)
+            setSearchWord(text)
     };
 
     return(
@@ -43,6 +42,7 @@ const StoresScreen = ({navigation}) => {
             <View style={{flexGrow: 1}}>
                 <StoresList
                 stores={storesFiltered}
+                navigation = {navigation}
                 />
             </View>
         </View>
