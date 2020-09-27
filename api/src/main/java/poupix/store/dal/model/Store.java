@@ -1,4 +1,4 @@
-package poupix.stores.dal.model;
+package poupix.store.dal.model;
 
 import com.couchbase.client.java.json.JsonObject;
 import java.util.Map;

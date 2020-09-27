@@ -1,4 +1,4 @@
-package poupix.stores.dal.client;
+package poupix.store.dal.client;
 
 import com.couchbase.client.core.cnc.tracing.ThresholdRequestTracer;
 import com.couchbase.client.core.endpoint.CircuitBreakerConfig;
@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import poupix.stores.dal.model.Coordinates;
-import poupix.stores.dal.model.Store;
-import poupix.stores.dto.StoreDto;
+import poupix.store.dal.model.Coordinates;
+import poupix.store.dal.model.Store;
+import poupix.store.dto.StoreDto;
 
 @Slf4j
 @Singleton

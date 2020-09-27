@@ -1,4 +1,4 @@
-package poupix.stores.service.impl;
+package poupix.store.service.impl;
 
 import com.google.common.collect.ImmutableList;
 import de.huxhorn.sulky.ulid.ULID;
@@ -6,11 +6,11 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import poupix.common.exception.BadRequestException;
-import poupix.stores.dal.client.CouchbaseClient;
-import poupix.stores.dal.model.Coordinates;
-import poupix.stores.dto.StoreDto;
-import poupix.stores.service.StoreService;
-import poupix.stores.transport.http.request.CreateStoreRequest;
+import poupix.store.dal.client.CouchbaseClient;
+import poupix.store.dal.model.Coordinates;
+import poupix.store.dto.StoreDto;
+import poupix.store.service.StoreService;
+import poupix.store.transport.http.request.CreateStoreRequest;
 
 @Singleton
 public class StoreServiceImpl implements StoreService {

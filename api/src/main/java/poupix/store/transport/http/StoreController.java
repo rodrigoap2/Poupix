@@ -1,4 +1,4 @@
-package poupix.stores.transport.http;
+package poupix.store.transport.http;
 
 import de.huxhorn.sulky.ulid.ULID;
 import io.micronaut.http.HttpResponse;
@@ -15,11 +15,11 @@ import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import poupix.common.exception.BadRequestException;
 import poupix.common.transport.http.response.CreationResponse;
-import poupix.stores.dto.StoreDto;
-import poupix.stores.service.StoreService;
-import poupix.stores.transport.http.request.CreateStoreRequest;
-import poupix.stores.transport.http.response.NearbyStoresResponse;
-import poupix.stores.transport.http.response.StoreResponse;
+import poupix.store.dto.StoreDto;
+import poupix.store.service.StoreService;
+import poupix.store.transport.http.request.CreateStoreRequest;
+import poupix.store.transport.http.response.NearbyStoresResponse;
+import poupix.store.transport.http.response.StoreResponse;
 
 @Controller("stores")
 @Secured(SecurityRule.IS_AUTHENTICATED)

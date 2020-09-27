@@ -1,4 +1,4 @@
-package poupix.stores.dal.model;
+package poupix.store.dal.model;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

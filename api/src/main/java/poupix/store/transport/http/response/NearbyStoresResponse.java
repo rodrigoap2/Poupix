@@ -1,4 +1,4 @@
-package poupix.stores.transport.http.response;
+package poupix.store.transport.http.response;
 
 import java.util.List;
 import lombok.Builder;

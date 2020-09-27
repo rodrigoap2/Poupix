@@ -1,10 +1,10 @@
-package poupix.stores.transport.http.request;
+package poupix.store.transport.http.request;
 
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Value;
-import poupix.stores.dal.model.Coordinates;
+import poupix.store.dal.model.Coordinates;
 
 @Value
 @AllArgsConstructor

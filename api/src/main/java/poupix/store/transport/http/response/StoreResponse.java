@@ -1,10 +1,9 @@
-package poupix.stores.transport.http.response;
+package poupix.store.transport.http.response;
 
-import java.awt.*;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Value;
-import poupix.stores.dal.model.Coordinates;
+import poupix.store.dal.model.Coordinates;
 
 @Value
 @Builder
