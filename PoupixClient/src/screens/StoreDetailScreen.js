@@ -1,6 +1,13 @@
 import React, {useContext, useEffect} from 'react'
-import {Text, View, StyleSheet, Image } from 'react-native'
+import {Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native'
+import { BarChart, Grid, XAxis, YAxis } from 'react-native-svg-charts'
+import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis, VictoryContainer } from "victory-native";
+import * as scale from 'd3-scale'
+
 import {Context as StoresContext} from '../context/StoresContext'
+
+const width = Dimensions.get('window').width; 
+const height = Dimensions.get('window').height; 
 
 const StoreDetailScreen = ({navigation, id}) => {
     const {state, getOneStore} = useContext(StoresContext)
@@ -15,18 +22,42 @@ const StoreDetailScreen = ({navigation, id}) => {
             </View>
         )
     }else{
-        const data = {
-            labels: ["Segunda", "Terca", "Quarta", "Quinta", "Sexta", "Sabado", "Domingo"],
-            datasets: [
-              {
-                data: [state.detailedStore.cashback.monday, state.detailedStore.cashback.tuesday, state.detailedStore.cashback.wednesday, state.detailedStore.cashback.thursday, state.detailedStore.cashback.friday, state.detailedStore.cashback.saturday, state.detailedStore.cashback.sunday]
-              }
-            ]
-          };
+          
+        const data = [state.detailedStore.cashback.monday*100 + "%", state.detailedStore.cashback.tuesday*100 + "%", state.detailedStore.cashback.wednesday*100 + "%", state.detailedStore.cashback.thursday*100 + "%", state.detailedStore.cashback.friday*100 + "%", state.detailedStore.cashback.saturday*100 + "%", state.detailedStore.cashback.sunday*100 + "%"]
+        const data3 = [{
+            y: state.detailedStore.cashback.monday,
+            x: "Seg",
+        },
+        {
+            y: state.detailedStore.cashback.tuesday,
+            x: "Ter",
+        },
+        {
+            y: state.detailedStore.cashback.wednesday,
+            x: "Qua",
+        },
+        {
+            y: state.detailedStore.cashback.thursday,
+            x: "Qui",
+        },
+        {
+            y: state.detailedStore.cashback.friday,
+            x: "Sex",
+        },
+        {
+            y: state.detailedStore.cashback.saturday,
+            x: "Sáb",
+        },
+        {
+            y: state.detailedStore.cashback.sunday,
+            x: "Dom",
+        },]
+
         return(
             <View style={styles.container}>
+                <ScrollView style={{flex: 1}}>
                 <Image
-                        source={{uri: state.detailedStore.pictures[1]}}
+                        source={{uri: state.detailedStore.pictures[0]}}
                         style={styles.imageStyle}
                 />
                 <View style={styles.infoView}>
@@ -41,7 +72,14 @@ const StoreDetailScreen = ({navigation, id}) => {
                 </View>
                 <View style={styles.cashbackGraph}>
                     <Text style={styles.cashbackGraphText}>Valores de Cashback</Text>
+                    <View style={{alignItems: 'center'}}>
+                    <VictoryChart height={200}>
+                        <VictoryBar data={data3} labels={data} cornerRadius={5} barRatio={1} standalone={false} style={{data: { fill: "#AC69F1" }, labels: {fill: '#8516FA'}, parent: { borderColor: '#8516FA' }}}/>
+                        <VictoryAxis/>
+                    </VictoryChart>
+                    </View>
                 </View>
+                </ScrollView>
             </View>
         )
     }
@@ -60,39 +98,43 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        marginLeft: '5%',
-        fontWeight: 'bold'
+        marginLeft: width * 0.05,
+        fontWeight: 'bold',
+        fontFamily: 'lucida grande'
     },
     imageStyle: {
-        flex: 3,
+        width: width * 1,
+        aspectRatio: 1.4,
         resizeMode:'cover',
-        marginBottom: '5%'
+        marginBottom: height * 0.02
     },
     cashback: {
         color: '#8F2BFA',
         fontWeight: 'bold',
     },
     infoView: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginBottom: height * 0.01
     },
     cashbackView: {
-        marginRight: '5%'
+        marginRight: width * 0.05,
     },
     description: {
-        flex: 2
+        marginBottom: height * 0.01
     },
     descriptionText: {
-        textAlign: 'center',
+        textAlign: 'justify',
+        marginRight: width * 0.05,
+        marginLeft: width * 0.05,
         fontSize: 14
     },
     cashbackGraph: {
-        flex: 3,
-        marginLeft: '5%',
+        marginLeft: width * 0.05,
     },
     cashbackGraphText: {
         fontWeight: 'bold',
+        fontSize: 12
     }
 });
 

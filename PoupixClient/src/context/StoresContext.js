@@ -97,7 +97,7 @@ const getOneStore = (dispatch) => {
                 'name': 'Mc Donalds',
                 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                 'cashback': {
-                    'monday': 0.07,
+                    'monday': 0.06,
                     'tuesday': 0.1,
                     'wednesday': 0.08,
                     'thursday': 0.06,
@@ -108,9 +108,9 @@ const getOneStore = (dispatch) => {
                 'pictures' : ['https://i.ytimg.com/vi/CMFhfr42QLg/maxresdefault.jpg', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRHUkd-jijdtMAz7LfGGGmTpSIyi5kLY4Y4TQ&usqp=CAU'],
                 'address' : 'Av. Gov. Agamenon Magalhães, 990 - Graças, Recife - PE, 52031-330',
                 'coordinates' : {
-                    'x' : -8.049829,
-                    'y' : -34.895319
-                }
+                    'lat' : -8.049829,
+                    'long' : -34.895319
+                },
             }
             console.log(store + 'aaaaaaaaaaaaaa')
             dispatch({type: 'get_one_store', payload: store});
