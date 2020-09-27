@@ -4,14 +4,7 @@ import {Context as StoresContext} from '../context/StoresContext'
 
 const StoreDetailScreen = ({navigation, id}) => {
     const {state, getOneStore} = useContext(StoresContext)
-    const data = {
-        labels: ["Segunda", "Terca", "Quarta", "Quinta", "Sexta", "Sabado", "Domingo"],
-        datasets: [
-          {
-            data: [state.detailedStore.cashback.monday, state.detailedStore.cashback.tuesday, state.detailedStore.cashback.wednesday, state.detailedStore.cashback.thursday, state.detailedStore.cashback.friday, state.detailedStore.cashback.saturday, state.detailedStore.cashback.sunday]
-          }
-        ]
-      };
+    
     useEffect(() => {
         getOneStore(id)
     },[])
@@ -22,6 +15,14 @@ const StoreDetailScreen = ({navigation, id}) => {
             </View>
         )
     }else{
+        const data = {
+            labels: ["Segunda", "Terca", "Quarta", "Quinta", "Sexta", "Sabado", "Domingo"],
+            datasets: [
+              {
+                data: [state.detailedStore.cashback.monday, state.detailedStore.cashback.tuesday, state.detailedStore.cashback.wednesday, state.detailedStore.cashback.thursday, state.detailedStore.cashback.friday, state.detailedStore.cashback.saturday, state.detailedStore.cashback.sunday]
+              }
+            ]
+          };
         return(
             <View style={styles.container}>
                 <Image
@@ -36,7 +37,7 @@ const StoreDetailScreen = ({navigation, id}) => {
                     </View>
                 </View>
                 <View style={styles.description}>
-                    <Text>{state.detailedStore.description}</Text>
+                    <Text style={styles.descriptionText}>{state.detailedStore.description}</Text>
                 </View>
                 <View style={styles.cashbackGraph}>
                     <Text style={styles.cashbackGraphText}>Valores de Cashback</Text>
@@ -80,8 +81,11 @@ const styles = StyleSheet.create({
         marginRight: '5%'
     },
     description: {
-        flex: 2,
-        alignSelf: 'center'
+        flex: 2
+    },
+    descriptionText: {
+        textAlign: 'center',
+        fontSize: 14
     },
     cashbackGraph: {
         flex: 3,

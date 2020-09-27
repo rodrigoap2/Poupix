@@ -14,10 +14,6 @@ import { Provider as AuthProvider } from './src/context/AuthContext';
 import { Provider as StoresProvider } from './src/context/StoresContext';
 
 const switchNavigator = createSwitchNavigator({
-  loginFlow: createStackNavigator({
-    Login: LoginScreen,
-    Signup: SignUpScreen,
-  }),
   mainFlow: createStackNavigator(
     {
     Menu: MenuScreen,
@@ -36,6 +32,10 @@ const switchNavigator = createSwitchNavigator({
           shadowRadius: 0
         }
       }
+    }),
+    loginFlow: createStackNavigator({
+      Login: LoginScreen,
+      Signup: SignUpScreen,
     }),
 });
 
