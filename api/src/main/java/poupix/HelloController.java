@@ -1,4 +1,3 @@
 package poupix;
 
-public class HelloController {
-}
+public class HelloController {}

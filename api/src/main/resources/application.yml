@@ -19,6 +19,7 @@ micronaut:
       login:
         enabled: true
 couchbase:
+  url: ${COUCHBASE_URL}
   user: ${COUCHBASE_USER}
   password: ${COUCHBASE_PASSWORD}
 datasources:
