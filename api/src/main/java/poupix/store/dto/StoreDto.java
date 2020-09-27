@@ -1,6 +1,7 @@
 package poupix.store.dto;
 
 import de.huxhorn.sulky.ulid.ULID;
+import java.util.List;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Value;
@@ -14,5 +15,6 @@ public class StoreDto {
   String description;
   Coordinates coordinates;
   String address;
+  List<String> pictures;
   Map<String, Double> cashback;
 }

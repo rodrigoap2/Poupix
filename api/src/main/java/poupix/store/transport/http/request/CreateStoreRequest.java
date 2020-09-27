@@ -1,5 +1,6 @@
 package poupix.store.transport.http.request;
 
+import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -14,5 +15,6 @@ public class CreateStoreRequest {
   String description;
   Coordinates coordinates;
   String address;
+  List<String> pictures;
   Map<String, Double> cashback;
 }

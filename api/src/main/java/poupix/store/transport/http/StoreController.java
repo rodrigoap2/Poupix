@@ -43,6 +43,7 @@ public class StoreController {
             .description(storeDto.getDescription())
             .address(storeDto.getAddress())
             .coordinates(storeDto.getCoordinates())
+            .pictures(storeDto.getPictures())
             .cashback(storeDto.getCashback())
             .build();
     return HttpResponse.ok(storeResponse);
@@ -51,11 +52,11 @@ public class StoreController {
   @Get("/nearby/{lat}/{lon}")
   public HttpResponse<NearbyStoresResponse> getNearbyStores(
       @PathVariable @NotNull Double lat, @PathVariable @NotNull Double lon) {
-    List<StoreDto> storeDtos = storeService.getNearbyStores(lat, lon);
+    List<StoreDto> stores = storeService.getNearbyStores(lat, lon);
     return HttpResponse.ok(
         NearbyStoresResponse.builder()
             .stores(
-                storeDtos
+                stores
                     .stream()
                     .map(
                         storeDto ->
@@ -65,6 +66,7 @@ public class StoreController {
                                 .description(storeDto.getDescription())
                                 .address(storeDto.getAddress())
                                 .coordinates(storeDto.getCoordinates())
+                                .pictures(storeDto.getPictures())
                                 .cashback(storeDto.getCashback())
                                 .build())
                     .collect(Collectors.toList()))

@@ -68,6 +68,7 @@ public class CouchbaseClient {
             storeDto.getDescription(),
             storeDto.getCoordinates(),
             storeDto.getAddress(),
+            storeDto.getPictures(),
             storeDto.getCashback());
     cluster.bucket(STORES_BUCKET).defaultCollection().insert(storeDto.getId().toString(), store);
     return storeDto.getId().toString();
@@ -87,6 +88,7 @@ public class CouchbaseClient {
         .description(store.getDescription())
         .address(store.getAddress())
         .coordinates(store.getCoordinates())
+        .pictures(store.getPictures())
         .cashback(store.getCashback())
         .build();
   }

@@ -1,5 +1,6 @@
 package poupix.store.transport.http.response;
 
+import java.util.List;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Value;
@@ -13,5 +14,6 @@ public class StoreResponse {
   String description;
   String address;
   Coordinates coordinates;
+  List<String> pictures;
   Map<String, Double> cashback;
 }

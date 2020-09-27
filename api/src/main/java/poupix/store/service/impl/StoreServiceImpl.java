@@ -33,6 +33,7 @@ public class StoreServiceImpl implements StoreService {
             .address(createStoreRequest.getAddress())
             .coordinates(createStoreRequest.getCoordinates())
             .cashback(createStoreRequest.getCashback())
+            .pictures(createStoreRequest.getPictures())
             .description(createStoreRequest.getDescription())
             .build();
     return couchbaseClient.createStore(storeDto);
