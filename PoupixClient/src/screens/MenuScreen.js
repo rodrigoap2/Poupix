@@ -1,12 +1,16 @@
 import React, {useContext, useEffect} from 'react'
-import {Text, View, StyleSheet} from 'react-native'
+import {Text, View, StyleSheet, ScrollView} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
+
 import Spacer from '../components/Spacer';
 import MenuView from '../components/MenuView'
 import {Context as StoresContext} from '../context/StoresContext'
-import { FlatList, State } from 'react-native-gesture-handler';
 import MenuStores from '../components/MenuStores';
-
+import MenuMicroInvesting from '../components/MenuMicroInvesting'; 
+import ShopIconSvg from '../../assets/img/ShopIconSvg'
+import MicroInvestingIconSvg from '../../assets/img/MicroInvestingIconSvg'
+import GoalsIconSvg from '../../assets/img/GoalsIconSvg'
+import { FlatList } from 'react-native-gesture-handler';
 
 const MenuScreen = ({navigation}) => {
     const name = 'Rodrigo'
@@ -21,29 +25,28 @@ const MenuScreen = ({navigation}) => {
             <SafeAreaView style={styles.topView}>
                 <Text style={styles.title}>Olá, <Text style={{fontWeight:'bold'}}>{name}</Text> </Text>
             </SafeAreaView>
-            <View>
+            <ScrollView>
                 <Spacer/>
                 <MenuView
                 onPress = {() => navigation.navigate('Goals')}
                 title = 'Metas'
+                image = {<GoalsIconSvg/>}
                 buttonText = 'Detalhes'
                 component = {<Text>aaa</Text>}
                 />
                 <Spacer/>
-                <MenuView
-                onPress = {() => navigation.navigate('MicroInvesting')}
-                title = 'Micro-investimento'
-                buttonText = 'Ajustar'
-                component = {<Text>aaa</Text>}
+                <MenuMicroInvesting
+                microInvestingValue={'R$ 1458,25'}
                 />
                 <Spacer/>
                 <MenuView
                 onPress = {() => navigation.navigate('Lojas', { stores: state.stores }) }
                 title = 'Lojas em destaque'
+                image = {<ShopIconSvg/>}
                 buttonText = 'Ver mais' 
                 component = {<MenuStores stores={state.stores.slice(0,3)} />} 
                 />
-            </View>
+            </ScrollView> 
         </View>
     )
 }

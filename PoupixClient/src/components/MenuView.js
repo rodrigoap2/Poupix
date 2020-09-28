@@ -1,13 +1,20 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import {Text, View, StyleSheet} from 'react-native'
+import {Text, View, StyleSheet, Dimensions} from 'react-native'
 
-const MenuView = ({onPress, title, buttonText, component}) => {
+const width = Dimensions.get('window').width; 
+const height = Dimensions.get('window').height; 
 
+const MenuView = ({onPress, title, buttonText, component, image}) => {
     return (
         <TouchableOpacity onPress={onPress}>
                     <View style={styles.objectView}>
-                        <Text style={styles.title}>{title}</Text>
+                        <View style={styles.headerView}>
+                            <View style={styles.image}>
+                                {image}
+                            </View>
+                            <Text style={styles.title}>{title}</Text>
+                        </View>
                         {component}
                         <Text style={styles.navigationButton}>{buttonText}</Text>
                     </View>
@@ -33,11 +40,20 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     title : {
+        color: '#434343',
+        fontStyle: 'italic',
+    },
+    headerView : {
+        flexDirection: 'row',
         marginTop: '5%',
         marginLeft: '5%',
         marginBottom: '7%',
-        color: '#A18DB5',
-        fontStyle: 'italic'
+    },
+    image: {
+        width: width * 0.05,
+        height: height * 0.02, 
+        marginRight: '2%',
+        marginTop: '1%'
     }
 });
 

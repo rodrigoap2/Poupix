@@ -75,7 +75,7 @@ const StoreDetailScreen = ({navigation, id}) => {
                     <Text style={styles.cashbackGraphText}>Valores de Cashback</Text>
                     <View style={{alignItems: 'center'}}>
                         <VictoryChart height={height * 0.25}>
-                            <VictoryBar data={data3} labels={data} cornerRadius={5} barRatio={1} standalone={false} style={{data: { fill: "#AC69F1" }, labels: {fill: '#8516FA'}, parent: { borderColor: '#8516FA' }}}/>
+                            <VictoryBar data={data3} labels={data} cornerRadius={5} barRatio={1} domainPadding={{x: 250}} standalone={false} style={{data: { fill: "#AC69F1" }, labels: {fill: '#8516FA'}, parent: { borderColor: '#8516FA' }}}/>
                             <VictoryAxis/>
                         </VictoryChart>
                     </View>
