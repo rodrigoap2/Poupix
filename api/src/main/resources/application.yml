@@ -32,6 +32,8 @@ jpa:
   default:
     packages-to-scan:
       - 'poupix.person.dal.model'
+      - 'poupix.account.dal.model'
+      - 'poupix.payment.dal.model'
     properties:
       hibernate:
         hbm2ddl:

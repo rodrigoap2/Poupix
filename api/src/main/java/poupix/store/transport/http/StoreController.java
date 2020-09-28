@@ -34,7 +34,7 @@ public class StoreController {
 
   @Get("/{id}")
   public HttpResponse<StoreResponse> getStore(@PathVariable @NotNull String id) {
-    if (id.length() < 26) throw new BadRequestException("Invalid store ID.");
+    if (id.length() != 26) throw new BadRequestException("Invalid store ID.");
     StoreDto storeDto = storeService.getStore(ULID.parseULID(id));
     StoreResponse storeResponse =
         StoreResponse.builder()

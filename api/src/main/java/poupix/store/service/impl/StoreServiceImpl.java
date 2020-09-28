@@ -22,7 +22,7 @@ public class StoreServiceImpl implements StoreService {
         .keySet()
         .containsAll(
             ImmutableList.of(
-                "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"))) {
+                "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"))) {
       throw new BadRequestException("Missing week day(s).");
     }
 
