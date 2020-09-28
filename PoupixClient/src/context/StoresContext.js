@@ -105,7 +105,7 @@ const getOneStore = (dispatch) => {
                     'saturday': 0.03,
                     'sunday': 0.02
                 },
-                'pictures' : ['https://i.ytimg.com/vi/CMFhfr42QLg/maxresdefault.jpg', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRHUkd-jijdtMAz7LfGGGmTpSIyi5kLY4Y4TQ&usqp=CAU'],
+                'pictures' : ['https://i.ytimg.com/vi/CMFhfr42QLg/maxresdefault.jpg', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRHUkd-jijdtMAz7LfGGGmTpSIyi5kLY4Y4TQ&usqp=CAU', 'https://d25dk4h1q4vl9b.cloudfront.net/media/images/promotion-pill/5e66918d381e70.12257120_1423x623_surpresa.jpg'],
                 'address' : 'Av. Gov. Agamenon Magalhães, 990 - Graças, Recife - PE, 52031-330',
                 'coordinates' : {
                     'lat' : -8.049829,

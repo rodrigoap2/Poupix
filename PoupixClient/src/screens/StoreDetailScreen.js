@@ -1,8 +1,8 @@
 import React, {useContext, useEffect} from 'react'
 import {Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native'
 import { BarChart, Grid, XAxis, YAxis } from 'react-native-svg-charts'
-import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis, VictoryContainer } from "victory-native";
-import * as scale from 'd3-scale'
+import { VictoryBar, VictoryChart, VictoryAxis} from "victory-native";
+import PicturesList from '../components/PicturesList';
 
 import {Context as StoresContext} from '../context/StoresContext'
 
@@ -64,7 +64,7 @@ const StoreDetailScreen = ({navigation, id}) => {
                     <Text style={styles.title}>{state.detailedStore.name}</Text>
                     <View style={styles.cashbackView}>
                         <Text style={styles.cashback}>{state.detailedStore.cashback.friday * 100}%  Hoje!</Text>
-                        <Text>À 50m</Text>
+                        <Text style={styles.distance}>À 50m</Text>
                     </View>
                 </View>
                 <View style={styles.description}>
@@ -73,11 +73,19 @@ const StoreDetailScreen = ({navigation, id}) => {
                 <View style={styles.cashbackGraph}>
                     <Text style={styles.cashbackGraphText}>Valores de Cashback</Text>
                     <View style={{alignItems: 'center'}}>
-                    <VictoryChart height={200}>
-                        <VictoryBar data={data3} labels={data} cornerRadius={5} barRatio={1} standalone={false} style={{data: { fill: "#AC69F1" }, labels: {fill: '#8516FA'}, parent: { borderColor: '#8516FA' }}}/>
-                        <VictoryAxis/>
-                    </VictoryChart>
+                        <VictoryChart height={height * 0.25}>
+                            <VictoryBar data={data3} labels={data} cornerRadius={5} barRatio={1} standalone={false} style={{data: { fill: "#AC69F1" }, labels: {fill: '#8516FA'}, parent: { borderColor: '#8516FA' }}}/>
+                            <VictoryAxis/>
+                        </VictoryChart>
                     </View>
+                </View>
+                <View style={styles.picturesView}>
+                    <PicturesList
+                        images={state.detailedStore.pictures}
+                    />
+                </View>
+                <View style={styles.mapView}>
+                    <Text style={styles.addressText}>{state.detailedStore.address}</Text>
                 </View>
                 </ScrollView>
             </View>
@@ -99,8 +107,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         marginLeft: width * 0.05,
-        fontWeight: 'bold',
-        fontFamily: 'lucida grande'
+        fontWeight: 'bold'
     },
     imageStyle: {
         width: width * 1,
@@ -111,11 +118,12 @@ const styles = StyleSheet.create({
     cashback: {
         color: '#8F2BFA',
         fontWeight: 'bold',
+        textAlign: 'right'
     },
     infoView: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: height * 0.01
+        marginBottom: height * 0.02
     },
     cashbackView: {
         marginRight: width * 0.05,
@@ -135,6 +143,17 @@ const styles = StyleSheet.create({
     cashbackGraphText: {
         fontWeight: 'bold',
         fontSize: 12
+    },
+    distance: {
+        textAlign: 'right'
+    },
+    mapView: {
+
+    },
+    addressText: {
+        marginLeft: width * 0.05,
+        marginBottom: height * 0.05,
+        textAlign: 'left',
     }
 });
 
