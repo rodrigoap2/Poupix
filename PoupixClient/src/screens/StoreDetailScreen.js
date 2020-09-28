@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-nati
 import { BarChart, Grid, XAxis, YAxis } from 'react-native-svg-charts'
 import { VictoryBar, VictoryChart, VictoryAxis} from "victory-native";
 import PicturesList from '../components/PicturesList';
+import MapImage from '../components/MapImage';
 
 import {Context as StoresContext} from '../context/StoresContext'
 
@@ -86,6 +87,9 @@ const StoreDetailScreen = ({navigation, id}) => {
                 </View>
                 <View style={styles.mapView}>
                     <Text style={styles.addressText}>{state.detailedStore.address}</Text>
+                    <MapImage
+                        coordinates={state.detailedStore.coordinates}
+                    />
                 </View>
                 </ScrollView>
             </View>
@@ -152,7 +156,7 @@ const styles = StyleSheet.create({
     },
     addressText: {
         marginLeft: width * 0.05,
-        marginBottom: height * 0.05,
+        marginBottom: height * 0.02,
         textAlign: 'left',
     }
 });
