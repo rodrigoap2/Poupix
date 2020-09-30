@@ -95,7 +95,7 @@ const MenuScreen = ({navigation}) => {
                 <ScrollView>
                     <Spacer/>
                     <MenuView
-                    onPress = {() => navigation.navigate('Goals')}
+                    onPress = {() => navigation.navigate('Goals', {name: name, goals: goals})}
                     title = 'Metas'
                     image = {<GoalsIconSvg/>}
                     buttonText = 'Detalhes'
@@ -103,7 +103,7 @@ const MenuScreen = ({navigation}) => {
                     />
                     <Spacer/>
                     <MenuMicroInvesting
-                    onPress = {() => navigation.navigate('MicroInvesting')}
+                    onPress = {() => navigation.navigate('MicroInvesting', {name: name, goals: goals})}
                     microInvestingValue={`R$${formatNumber(goals.roundup.total)}`}
                     />
                     <Spacer/>

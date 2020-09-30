@@ -48,9 +48,10 @@ const getGoals = (dispatch) => {
                     'scheduled': 20.40
                 }
             }
-            dispatch({type: 'get_goals', payload: goals});
+            return goals
         }catch(err){
             console.log('Erro na requisição das metas')
+            return -1
         }
     };
 }
