@@ -2,10 +2,13 @@ import React, {useContext, useEffect} from 'react'
 import {Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native'
 import { BarChart, Grid, XAxis, YAxis } from 'react-native-svg-charts'
 import { VictoryBar, VictoryChart, VictoryAxis} from "victory-native";
+
 import PicturesList from '../components/PicturesList';
 import MapImage from '../components/MapImage';
+import ScreenHeader from '../components/ScreenHeader'
 
 import {Context as StoresContext} from '../context/StoresContext'
+import { SafeAreaView } from 'react-navigation';
 
 const width = Dimensions.get('window').width; 
 const height = Dimensions.get('window').height; 
@@ -61,6 +64,9 @@ const StoreDetailScreen = ({navigation, id}) => {
                         source={{uri: state.detailedStore.pictures[0]}}
                         style={styles.imageStyle}
                 />
+                <SafeAreaView style={{position: 'absolute', marginTop: height * 0.04}}>
+                    <ScreenHeader onPress={() => navigation.navigate('Lojas')}/>
+                </SafeAreaView>
                 <View style={styles.infoView}>
                     <Text style={styles.title}>{state.detailedStore.name}</Text>
                     <View style={styles.cashbackView}>
@@ -75,7 +81,7 @@ const StoreDetailScreen = ({navigation, id}) => {
                     <Text style={styles.cashbackGraphText}>Valores de Cashback</Text>
                     <View style={{alignItems: 'center'}}>
                         <VictoryChart height={height * 0.25}>
-                            <VictoryBar data={data3} labels={data} cornerRadius={5} barRatio={1} domainPadding={{x: 250}} standalone={false} style={{data: { fill: "#AC69F1" }, labels: {fill: '#8516FA'}, parent: { borderColor: '#8516FA' }}}/>
+                            <VictoryBar data={data3} labels={data} cornerRadius={5} barRatio={1} domainPadding={{x: 20}} standalone={false} style={{data: { fill: "#AC69F1" }, labels: {fill: '#8516FA'}, parent: { borderColor: '#8516FA' }}}/>
                             <VictoryAxis/>
                         </VictoryChart>
                     </View>

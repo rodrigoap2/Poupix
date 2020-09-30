@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
+
+const height = Dimensions.get('window').height;
 
 const Spacer = ({ children }) => {
     return (
@@ -9,7 +11,7 @@ const Spacer = ({ children }) => {
 
 const styles = StyleSheet.create({
     spacer: {
-        margin: 15
+        marginTop: height * 0.02
     }
 });
 

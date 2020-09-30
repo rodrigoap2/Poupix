@@ -12,6 +12,7 @@ import MicroInvestingScreen from './src/screens/MicroInvestingScreen';
 import { setNavigator } from './src/navigationRef'
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { Provider as StoresProvider } from './src/context/StoresContext';
+import { Provider as GoalsProvider } from './src/context/GoalsContext';
 
 const switchNavigator = createSwitchNavigator({
   mainFlow: createStackNavigator(
@@ -20,6 +21,12 @@ const switchNavigator = createSwitchNavigator({
     GoalsFlow: createBottomTabNavigator({
       Goals: GoalsScreen,
       MicroInvesting: MicroInvestingScreen,
+    }, {
+      navigationOptions: () => {
+        return{
+          header: () => false
+        }
+      }
     }),
     Lojas: StoresScreen,
     StoreDetail: StoreDetailScreen,
@@ -43,10 +50,12 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
   return(
-    <StoresProvider>
-      <AuthProvider>
-        <App ref={(navigator) => setNavigator(navigator)}/>
-      </AuthProvider>
-    </StoresProvider>
+    <GoalsProvider>
+      <StoresProvider>
+        <AuthProvider>
+          <App ref={(navigator) => setNavigator(navigator)}/>
+        </AuthProvider>
+      </StoresProvider>
+    </GoalsProvider>
   );
 }

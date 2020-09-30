@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 1,
         borderColor: '#DCDCDC',
-        marginHorizontal: 15
+        marginHorizontal: width * 0.05
     },
     navigationButton : {
         color: '#8F2BFA',
