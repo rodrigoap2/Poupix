@@ -15,7 +15,7 @@ const ScreenHeader = ({title, onPress}) => {
                 <TouchableOpacity style={{justifyContent: 'center'}} onPress={onPress}>
                     <BackIconSvg/>
                 </TouchableOpacity>
-                <View style={{justifyContent: 'center', left: width * 0.22}}>
+                <View style={{justifyContent: 'center', left: width * 0.208}}>
                     {title ? <Text style={styles.title}>{title}</Text> : null}
                 </View>
             </View>

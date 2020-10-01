@@ -8,7 +8,6 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height; 
 
 const GoalsView = ({navigation, title, name, goals}) => {
-    console.log(goals)
     return(
         <View style={styles.container}>
             <View style={{ marginTop: height * 0.04}}> 
@@ -35,8 +34,8 @@ const styles = StyleSheet.create({
         fontSize: 24,
         color: '#FFFFFF',
         textAlign: 'center',
-        marginTop: height * 0.15,
-        marginBottom: height * 0.02
+        marginTop: height * 0.1,
+        marginBottom: height * 0.05
     },
     goalsComponent: {
         backgroundColor: '#FFFFFF',
