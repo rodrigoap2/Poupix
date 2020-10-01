@@ -9,6 +9,8 @@ CREATE TABLE person (
 CREATE TABLE account (
     id VARCHAR(26) PRIMARY KEY,
     balance NUMERIC,
+    roundup BOOLEAN,
+    roundup_value NUMERIC,
     person_id VARCHAR(11) REFERENCES person(id) NOT NULL
 );
 
@@ -34,7 +36,7 @@ CREATE TABLE payment (
     date TIMESTAMP,
     liquidation_date TIMESTAMP NOT NULL,
     cashback NUMERIC NOT NULL,
-    micro_invest NUMERIC NOT NULL,
-    store_id VARCHAR(14) NOT NULL,
+    roundup NUMERIC NOT NULL,
+    store_id VARCHAR(26) NOT NULL,
     person_id VARCHAR(11) REFERENCES person(id) NOT NULL
 );

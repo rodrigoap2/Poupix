@@ -8,15 +8,18 @@ services:
       - api/api.dev
     restart: always
     ports:
-    - 8080:8080
+      - 8080:8080
   couchbase:
     container_name: couchbase
     image: couchbase:community-6.5.1
     ports:
-    - 8091:8091
-    - 8094:8094
+      - 8091:8091
+      - 8092:8092
+      - 8093:8093
+      - 8094:8094
+      - 11210:11210
     volumes:
-    - couchbase
+    - couchbase:/opt/couchbase/var
   flyway:
     container_name: flyway_migrations
     image: flyway/flyway:6.5
