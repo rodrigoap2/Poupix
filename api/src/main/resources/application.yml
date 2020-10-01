@@ -18,6 +18,10 @@ micronaut:
     endpoints:
       login:
         enabled: true
+couchbase:
+  url: ${COUCHBASE_URL}
+  user: ${COUCHBASE_USER}
+  password: ${COUCHBASE_PASSWORD}
 datasources:
   default:
     url: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
@@ -28,6 +32,8 @@ jpa:
   default:
     packages-to-scan:
       - 'poupix.person.dal.model'
+      - 'poupix.account.dal.model'
+      - 'poupix.payment.dal.model'
     properties:
       hibernate:
         hbm2ddl:
