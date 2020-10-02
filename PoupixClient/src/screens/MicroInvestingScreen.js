@@ -5,7 +5,7 @@ import MicroInvestingComponent from '../components/MicroInvesting/MicroInvesting
 import getGoals from '../functions/getGoals'
 
 const MicroInvestingScreen = ({navigation}) => {
-    const name = navigation.getParam('name')
+    const name = navigation.getParam('name') ? navigation.getParam('name') : 'Rodrigo'
     const [goals,setGoals] = useState({})
     const [carregou, setCarregou] = useState(false)
 
@@ -20,7 +20,7 @@ const MicroInvestingScreen = ({navigation}) => {
 
     if(carregou){
         return(
-            <GoalsView navigation={navigation} title={'Metas'} name={name} goals={goals} component={<MicroInvestingComponent roundup={goals.roundup}/>}/>
+            <GoalsView navigation={navigation} title={'Micro-investimento'} name={name} goals={goals} component={<MicroInvestingComponent roundup={goals.roundup}/>}/>
         )
     }else{
         return(

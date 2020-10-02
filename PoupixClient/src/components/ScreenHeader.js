@@ -11,14 +11,14 @@ const height = Dimensions.get('window').height;
 
 const ScreenHeader = ({title, onPress}) => {
     return (
-            <View style={{flexDirection:'row', position: 'absolute', flexGrow: 1, justifyContent: 'space-between', width: '100%'}}>
+            <View style={{flexDirection:'row', flexGrow: 1, justifyContent: 'space-between', width: '100%'}}>
                 <TouchableOpacity style={{justifyContent: 'center'}} onPress={onPress}>
                     <BackIconSvg/>
                 </TouchableOpacity>
-            <View style={{justifyContent: 'center', paddingRight: width*0.2, paddingBottom: height*0.005}}>
-                    {title ? <Text style={styles.title}>{title}</Text> : null}
-                </View>
-                <View></View>
+            <View style={{justifyContent: 'center', paddingRight: width*0.22, paddingBottom: height*0.005}}>
+                {title ? <Text style={styles.title}>{title}</Text> : null}
+            </View>
+            <View></View>
             </View>
     );
 }

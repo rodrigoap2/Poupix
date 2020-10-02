@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         color: '#FFFFFF',
         textAlign: 'center',
-        marginTop: height * 0.1,
+        marginTop: height * 0.01,
         marginBottom: height * 0.05
     },
     goalsComponent: {

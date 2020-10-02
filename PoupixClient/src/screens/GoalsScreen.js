@@ -10,7 +10,7 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height; 
 
 const GoalsScreen = ({navigation}) => {
-    const name = navigation.getParam('name')
+    const name = navigation.getParam('name') ? navigation.getParam('name') : 'Rodrigo'
     const [goals,setGoals] = useState({})
     const [carregou, setCarregou] = useState(false)
 
@@ -30,7 +30,7 @@ const GoalsScreen = ({navigation}) => {
     }else{
         return(
             <View>
-                
+
             </View>
         )
     }

@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import {Text, View, StyleSheet, Dimensions, Button} from 'react-native'
 import formatNumber from '../../functions/formatNumber'
 import Slider from '@react-native-community/slider';
-
+import CheckBox from '@react-native-community/checkbox';
 
 const width = Dimensions.get('window').width; 
 const height = Dimensions.get('window').height; 
 
 const MicroInvestingComponent = ({roundup}) => {
-    const [sliderValue, setSliderValue] = useState(roundup ? roundup.roundup : 0)
+    const [sliderValue, setSliderValue] = useState(roundup ? roundup.roundup: 0.0)
     const [roundupTransaction, setroundupTransaction] = useState(roundup ? false : true)
 
-    console.log(roundup)
+    console.log(roundupTransaction)
     return (
         <View style={styles.container}>
             <View style={styles.microInvestingInfo}>
@@ -23,9 +23,9 @@ const MicroInvestingComponent = ({roundup}) => {
                 <Text style={styles.roundupTitle}>Micro-investimento</Text>
                 <View style={{marginTop: height * 0.015, marginLeft: width * 0.05}}>
                     <Text style={styles.microInvestingDescription}>Esse valor será acrescido às suas compras e{'\n'}adicionado ao seu saldo automaticamente.</Text>
-                    <View></View>
                     <Slider
                         style={{width: width * 0.7, height: height * 0.05}}
+                        disabled={roundupTransaction ? true : false}
                         minimumValue={0}
                         maximumValue={7}
                         value={sliderValue}
@@ -35,11 +35,25 @@ const MicroInvestingComponent = ({roundup}) => {
                         onValueChange = {(value) => setSliderValue(formatNumber(value))}
                     />
                     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <Text style={{marginLeft: width*0.03}}>R$ 0</Text>
-                    <Text style={{marginRight: width * 0.16}}>R$ 7</Text>
+                        <Text style={styles.minimumValue}>R$ 0</Text>
+                        <Text style={styles.maximumValue}>R$ 7</Text>
                     </View>
-                    <View style={styles.createGoalButton}>
-                        <Text style={{textAlign: 'center', color: '#FFFFFF'}}>R${sliderValue}</Text>
+                    <View style={styles.sliderValueBox}>
+                        <Text style={{textAlign: 'center', color: '#FFFFFF'}}>R${roundupTransaction ? '0,00': sliderValue}</Text>
+                    </View>
+                    <View style={styles.roundupCheckboxView}>
+                        <CheckBox
+                            disabled={false}
+                            value={roundupTransaction}
+                            onCheckColor='#8516FA'
+                            tintColors={{ true : '#8516FA', false: '#8516FA'}}
+                            lineWidth={1}
+                            onValueChange={(newValue) => setroundupTransaction(newValue)}
+                        />
+                        <View style={{justifyContent: 'center', marginTop: height* 0.005}}>
+                            <Text style={{fontStyle: 'italic', fontSize: 16}}>Arredondamento</Text>
+                            <Text style={{fontSize: 10}}>Escolha essa opção para arredondar o valor{'\n'}das compras para o maior inteiro mais próximo.</Text>
+                        </View>
                     </View>
                 </View>
             </View>
@@ -79,7 +93,7 @@ const styles = StyleSheet.create({
         fontSize: height * 0.0135,
         textAlign: 'left',
     },
-    createGoalButton: {
+    sliderValueBox: {
         backgroundColor: '#8516FA',
         overflow: 'hidden',
         borderRadius: 10,
@@ -89,6 +103,16 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginRight: width * 0.15
     },
+    minimumValue:{
+        marginLeft: width*0.03
+    },
+    maximumValue: {
+        marginRight: width * 0.16
+    },
+    roundupCheckboxView: {
+        flexDirection: 'row',
+        marginTop: height * 0.02
+    }
 });
 
 export default MicroInvestingComponent;
