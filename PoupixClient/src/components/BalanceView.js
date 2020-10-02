@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#DFDFDF',
         paddingVertical: height * 0.025,
-        paddingHorizontal: width * 0.025
+        paddingHorizontal: width * 0.025,
     },
     balance: {
         marginLeft: width * 0.01,

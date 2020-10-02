@@ -13,57 +13,13 @@ import MicroInvestingIconSvg from '../../assets/img/MicroInvestingIconSvg'
 import GoalsIconSvg from '../../assets/img/GoalsIconSvg'
 import { FlatList } from 'react-native-gesture-handler';
 import poupixApi from '../api/poupixApi'
+import getGoals from '../functions/getGoals'
 
 const MenuScreen = ({navigation}) => {
     const name = 'Rodrigo'
     const {state, getStores} = useContext(StoresContext)
     const [goals, setGoals] = useState({})
     const [carregou, setCarregou] = useState(false)
-    const getGoals = () => {
-        return () => {
-            try{
-                //const response = await poupixApi.get('/stores')
-                const goals = {
-                    'roundup': {
-                        'lastMonth': 30,
-                        'total': 30000.20,
-                        'valuePerTransaction': 1
-                    },
-                    'goals': {
-                        'thisMonthPercentage':0.7,
-                        'thisMonthTotalValue': 872.23,
-                        'goalsInfo': [
-                            {
-                                'name': 'Casa',
-                                'totalValue': 400119.99,
-                                'actualValue': 200059.99,
-                                'actualMonth': 23,
-                                'totalMonths': 100
-                            },
-                            {
-                                'name': 'Computador',
-                                'totalValue': 4199.99,
-                                'actualValue': 3295.99,
-                                'actualMonth': 23,
-                                'totalMonths': 100
-                            },
-                        ]
-                    },
-                    'account': {
-                        'balance': 202119.98,
-                        'lastYear': 10709.50,
-                        'revenue': 251.79,
-                        'revenueIndex': '100% do CDI',
-                        'scheduled': 20.40
-                    }
-                }
-                return goals
-            }catch(err){
-                console.log('Erro na requisição das metas')
-                return -1
-            }
-        };
-    }
     const formatNumber = (amount, decimalCount = 2, decimal = ",", thousands = ".") => {
         try {
           decimalCount = Math.abs(decimalCount);

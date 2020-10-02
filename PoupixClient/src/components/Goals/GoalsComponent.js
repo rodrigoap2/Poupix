@@ -12,6 +12,7 @@ const stub = () => {
 }
 
 const GoalsComponent = ({goals}) => {
+    
     return (
         <View>
             <View style={styles.headerView}>
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
         width: width * 0.4,
         height: height * 0.05,
         justifyContent: 'center',
-        marginTop: height * 0.05
+        marginTop: height * 0.04
     },
     goalButtonText: {
         color: 'white',
