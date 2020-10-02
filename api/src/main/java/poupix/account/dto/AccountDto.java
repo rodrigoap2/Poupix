@@ -1,6 +1,7 @@
 package poupix.account.dto;
 
 import de.huxhorn.sulky.ulid.ULID;
+import java.util.List;
 import lombok.Builder;
 import lombok.Value;
 
@@ -12,4 +13,8 @@ public class AccountDto {
   Double balance;
   Boolean roundup;
   Double roundupValue;
+  List<GoalDto> goals;
+  Double lastTwelveMonthsBalance;
+  Double thisMonthProgress;
+  Double thisMonthPercentage;
 }

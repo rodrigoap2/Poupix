@@ -26,7 +26,9 @@ CREATE TABLE goal (
     id VARCHAR(26) PRIMARY KEY,
     title TEXT NOT NULL,
     total_goal NUMERIC NOT NULL,
-    person_id VARCHAR(11) REFERENCES person(id)
+    begin_date TIMESTAMP NOT NULL,
+    total_months NUMERIC NOT NULL,
+    account_id VARCHAR(26) REFERENCES account(id) NOT NULL
 );
 
 CREATE TABLE payment (
