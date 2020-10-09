@@ -90,6 +90,7 @@ public class AccountFacadeImpl implements AccountFacade {
         .id(ULID.parseULID(account.getId()))
         .balance(account.getBalance())
         .personId(account.getPerson().getId())
+        .personName(account.getPerson().getName())
         .roundup(account.getRoundup())
         .roundupValue(account.getRoundupValue())
         .goals(

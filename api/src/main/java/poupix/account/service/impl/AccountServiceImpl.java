@@ -52,6 +52,7 @@ public class AccountServiceImpl implements AccountService {
                 .build())
         .account(
             AccountResponse.builder()
+                .personName(accountDto.getPersonName())
                 .balance(accountDto.getBalance())
                 .lastYear(accountDto.getLastTwelveMonthsBalance())
                 .revenue(0D)
