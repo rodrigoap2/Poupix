@@ -95,7 +95,7 @@ public class CouchbaseClient {
 
   public List<StoreDto> getNearbyStores(Coordinates coordinates) {
     GeoDistanceQuery geoDistanceQuery =
-        new GeoDistanceQuery(coordinates.getLon(), coordinates.getLat(), "200m");
+        new GeoDistanceQuery(coordinates.getLon(), coordinates.getLat(), "10000m");
     return cluster
         .searchQuery(STORES_GEOSPATIAL_IDX, geoDistanceQuery)
         .rows()
