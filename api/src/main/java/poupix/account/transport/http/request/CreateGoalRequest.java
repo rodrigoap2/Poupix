@@ -1,4 +1,4 @@
-package poupix.account.transport.http;
+package poupix.account.transport.http.request;
 
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

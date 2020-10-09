@@ -5,12 +5,12 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import lombok.extern.slf4j.Slf4j;
 import poupix.account.dal.AccountFacade;
 import poupix.account.dal.dao.AccountRepository;
 import poupix.account.dal.dao.GoalRepository;
@@ -21,7 +21,6 @@ import poupix.account.dto.GoalDto;
 import poupix.account.dto.RoundupDto;
 import poupix.common.exception.NotFoundException;
 
-@Slf4j
 @Singleton
 public class AccountFacadeImpl implements AccountFacade {
 
@@ -63,7 +62,6 @@ public class AccountFacadeImpl implements AccountFacade {
     Double lastTwelveMonths;
     if (lastYearQuery == null) lastTwelveMonths = 0D;
     else lastTwelveMonths = ((BigDecimal) lastYearQuery).doubleValue();
-    log.info("last 12 months -> {}", lastTwelveMonths);
 
     List<Goal> goals = account.getGoals();
 
@@ -82,8 +80,6 @@ public class AccountFacadeImpl implements AccountFacade {
     Double thisMonthProgress;
     if (monthProgressQuery == null) thisMonthProgress = 0D;
     else thisMonthProgress = ((BigDecimal) monthProgressQuery).doubleValue();
-    log.info("this month -> {}", thisMonthProgress);
-    log.info("monthly goal -> {}", monthlyGoal);
     Double thisMonthPercentage = thisMonthProgress / monthlyGoal;
 
     return AccountDto.builder()
@@ -142,8 +138,6 @@ public class AccountFacadeImpl implements AccountFacade {
                     .setParameter("personId", personId)
                     .getSingleResult())
             .doubleValue();
-    log.info("last month roundup -> {}", lastMonthRoundup);
-
     return RoundupDto.builder()
         .lastMonthRoundup(lastMonthRoundup)
         .totalRoundup(totalRoundup)
@@ -165,5 +159,17 @@ public class AccountFacadeImpl implements AccountFacade {
     goal.setTotalGoal(goalDto.getTotalGoal());
     goal.setTotalMonths(goalDto.getTotalMonths());
     return ULID.parseULID(goalRepository.save(goal).getId());
+  }
+
+  @Override
+  @Transactional
+  public void changeRoundup(Optional<Double> roundup, String personId) {
+    Account account =
+        accountRepository
+            .findByPersonId(personId)
+            .orElseThrow(() -> new NotFoundException("Account not found."));
+    account.setRoundup(!roundup.isPresent());
+    account.setRoundupValue(roundup.orElse(0D));
+    accountRepository.update(account);
   }
 }
