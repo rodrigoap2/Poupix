@@ -1,7 +1,9 @@
+import poupixApi from '../api/poupixApi'
+
 const getGoals = () => {
-    return () => {
+    return async () => {
         try{
-            //const response = await poupixApi.get('/stores')
+            const response = await poupixApi.get('/accounts/general-information').then((res) => res).catch((err) => console.log(err))
             const goals = {
                 'roundup': {
                     'lastMonth': 30,
@@ -36,9 +38,9 @@ const getGoals = () => {
                     'scheduled': 20.40
                 }
             }
-            return goals
+            return response.data
         }catch(err){
-            console.log('Erro na requisição das metas')
+            console.log('Erro na requisição das metas aff')
             return -1
         }
     };

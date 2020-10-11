@@ -8,24 +8,33 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height; 
 
 const GoalsView = ({navigation, title, name, goals, component}) => {
-    return(
-        <View style={styles.container}>
-            <SafeAreaView style={{backgroundColor: '#FFB726'}}>
-                <View style={{marginTop: height * 0.04}}>
-                    <ScreenHeader title={title} onPress={() => navigation.navigate('Menu')}/>
+    if(goals.account){
+        return(
+            <View style={styles.container}>
+                <SafeAreaView style={{backgroundColor: '#FFB726'}}>
+                    <View style={{marginTop: height * 0.04}}>
+                        <ScreenHeader title={title} onPress={() => navigation.navigate('Menu')}/>
+                    </View>
+                        <Text style={styles.name}>Olá, {'\n'}<Text style={{fontWeight:'bold'}}>{name}</Text></Text>
+                </SafeAreaView>
+                <Spacer/>
+                <View style={{backgroundColor: '#FFFFFF'}}>
+                    <BalanceView balance={goals.account.balance} balanceLastYear={goals.account.lastYear} revenue={goals.account.revenue} revenueIndex={goals.account.revenueIndex}/>
                 </View>
-                    <Text style={styles.name}>Olá, {'\n'}<Text style={{fontWeight:'bold'}}>{name}</Text></Text>
-            </SafeAreaView>
-            <Spacer/>
-            <View style={{backgroundColor: '#FFFFFF'}}>
-                <BalanceView balance={goals.account.balance} balanceLastYear={goals.account.lastYear} revenue={goals.account.revenue} revenueIndex={goals.account.revenueIndex}/>
+                
+                <View style={styles.goalsComponent}>
+                    {component}
+                </View>
             </View>
-            
-            <View style={styles.goalsComponent}>
-                {component}
+        )
+    }else{
+        return(
+            <View>
+
             </View>
-        </View>
-    )
+        )
+    }
+    
 }
 
 const styles = StyleSheet.create({

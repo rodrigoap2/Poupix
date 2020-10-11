@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text, Button, Input } from 'react-native-elements';
 import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext'
 import { NavigationEvents } from 'react-navigation';
+import * as Location from 'expo-location';
 
 const LoginScreen = ({navigation}) => {
     const [cpf, setCpf] = useState('');
@@ -15,6 +16,16 @@ const LoginScreen = ({navigation}) => {
           setCpf(cpf)
         }
     }
+
+    useEffect(() => {
+        (async () => {
+            let { status } = await Location.requestPermissionsAsync();
+            if (status !== 'granted') {
+              console.log('aff')
+            }
+          })();
+    },[])
+
 
     return(
         <View style={styles.container}>

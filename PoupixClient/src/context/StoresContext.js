@@ -1,5 +1,6 @@
 import createDataContext from './createDataContext';
 import poupixApi from '../api/poupixApi'
+import * as Location from 'expo-location';
 
 const storesReducer = (state, action) => {
     switch(action.type){
@@ -15,7 +16,11 @@ const storesReducer = (state, action) => {
 const getStores = (dispatch) => {
     return async () => {
         try{
-            //const response = await poupixApi.get('/stores')
+            let location = await Location.getCurrentPositionAsync({});
+            //console.log(location)
+            //console.log(`/stores/${location.coords.latitude}/${location.coords.longitude}`)
+            const response = await poupixApi.get(`/stores/nearby/${location.coords.latitude}/${location.coords.longitude}`)
+            console.log(response.data.stores)
             const stores = [
                 {
                     'name': 'Adidas',
@@ -93,6 +98,7 @@ const getOneStore = (dispatch) => {
     return async (id) => {
         try{
             //const response = await poupixApi.get('/stores/' + id)
+            console.log(id)
             const store = {
                 'name': 'Mc Donalds',
                 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -112,7 +118,6 @@ const getOneStore = (dispatch) => {
                     'long' : -34.895319
                 },
             }
-            console.log(store + 'aaaaaaaaaaaaaa')
             dispatch({type: 'get_one_store', payload: store});
         }catch(err){
             console.log('Erro na requisição de lojas')

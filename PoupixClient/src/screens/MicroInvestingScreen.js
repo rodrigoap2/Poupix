@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {StyleSheet, View} from 'react-native'
 import GoalsView from '../components/Goals/GoalsView';
 import MicroInvestingComponent from '../components/MicroInvesting/MicroInvestingComponent';
-import getGoals from '../functions/getGoals'
+import poupixApi from '../api/poupixApi'
 
 const MicroInvestingScreen = ({navigation}) => {
     const name = navigation.getParam('name') ? navigation.getParam('name') : 'Rodrigo'
@@ -13,7 +13,7 @@ const MicroInvestingScreen = ({navigation}) => {
         if(navigation.getParam('goals')){
             setGoals(navigation.getParam('goals'))
         }else{
-            setGoals(getGoals())
+            poupixApi.get('/accounts/general-information').then((res) => setGoals(res.data)).catch((err) => console.log(err))
         }
         setCarregou(true)
     },[])
