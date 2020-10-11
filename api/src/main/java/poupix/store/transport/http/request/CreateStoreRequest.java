@@ -13,6 +13,7 @@ import poupix.store.dal.model.Coordinates;
 public class CreateStoreRequest {
   String name;
   String description;
+  String category;
   Coordinates coordinates;
   String address;
   List<String> pictures;

@@ -66,6 +66,7 @@ public class CouchbaseClient {
         new Store(
             storeDto.getName(),
             storeDto.getDescription(),
+            storeDto.getCategory(),
             storeDto.getCoordinates(),
             storeDto.getAddress(),
             storeDto.getPictures(),
@@ -85,6 +86,7 @@ public class CouchbaseClient {
     return StoreDto.builder()
         .id(storeId)
         .name(store.getName())
+        .category(store.getCategory())
         .description(store.getDescription())
         .address(store.getAddress())
         .coordinates(store.getCoordinates())
@@ -95,7 +97,7 @@ public class CouchbaseClient {
 
   public List<StoreDto> getNearbyStores(Coordinates coordinates) {
     GeoDistanceQuery geoDistanceQuery =
-        new GeoDistanceQuery(coordinates.getLon(), coordinates.getLat(), "200m");
+        new GeoDistanceQuery(coordinates.getLon(), coordinates.getLat(), "10000m");
     return cluster
         .searchQuery(STORES_GEOSPATIAL_IDX, geoDistanceQuery)
         .rows()

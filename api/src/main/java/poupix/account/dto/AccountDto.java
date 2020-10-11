@@ -10,6 +10,7 @@ import lombok.Value;
 public class AccountDto {
   ULID.Value id;
   String personId;
+  String personName;
   Double balance;
   Boolean roundup;
   Double roundupValue;

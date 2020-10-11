@@ -1,23 +1,28 @@
 micronaut:
   application:
     name: api
+  server:
+    port: 8080
+    cors:
+      enabled: true
   security:
     enabled: true
     authentication: bearer
+    endpoints:
+      login:
+        enabled: true
     token:
       jwt:
+        enabled: true
+        generator:
+          access-token:
+            expiration: 86400
         signatures:
           secret:
             generator:
               secret: ${JWT_SECRET}
               base64: true
-              jws-algorithm: HS256
-        enabled: true
-        generator:
-          access-token-expiration: 86400 #1 day
-    endpoints:
-      login:
-        enabled: true
+              jws-algorithm: HS512
 couchbase:
   url: ${COUCHBASE_URL}
   user: ${COUCHBASE_USER}

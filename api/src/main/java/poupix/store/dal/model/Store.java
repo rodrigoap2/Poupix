@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class Store {
   String name;
   String description;
+  String category;
   Coordinates coordinates;
   String address;
   List<String> pictures;
@@ -24,6 +25,7 @@ public class Store {
     Store store = new Store();
     store.setName((String) jsonObject.get("name"));
     store.setDescription((String) jsonObject.get("description"));
+    store.setCategory((String) jsonObject.get("category"));
     store.setAddress((String) jsonObject.get("address"));
     store.setPictures(
         ((JsonArray) jsonObject.get("pictures"))

@@ -2,6 +2,7 @@ package poupix.account.service.impl;
 
 import de.huxhorn.sulky.ulid.ULID;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import poupix.account.dal.AccountFacade;
@@ -9,7 +10,8 @@ import poupix.account.dto.AccountDto;
 import poupix.account.dto.GoalDto;
 import poupix.account.dto.RoundupDto;
 import poupix.account.service.AccountService;
-import poupix.account.transport.http.CreateGoalRequest;
+import poupix.account.transport.http.request.ChangeRoundupRequest;
+import poupix.account.transport.http.request.CreateGoalRequest;
 import poupix.account.transport.http.response.AccountResponse;
 import poupix.account.transport.http.response.GeneralInformationResponse;
 import poupix.account.transport.http.response.GoalResponse;
@@ -52,6 +54,7 @@ public class AccountServiceImpl implements AccountService {
                 .build())
         .account(
             AccountResponse.builder()
+                .personName(accountDto.getPersonName())
                 .balance(accountDto.getBalance())
                 .lastYear(accountDto.getLastTwelveMonthsBalance())
                 .revenue(0D)
@@ -71,5 +74,11 @@ public class AccountServiceImpl implements AccountService {
             .totalMonths(createGoalRequest.getTotalMonths())
             .build();
     return accountFacade.createGoal(goalDto, personId);
+  }
+
+  @Override
+  public void changeRoundup(ChangeRoundupRequest changeRoundupRequest, String personId) {
+    Optional<Double> roundup = Optional.ofNullable(changeRoundupRequest.getRoundup());
+    accountFacade.changeRoundup(roundup, personId);
   }
 }

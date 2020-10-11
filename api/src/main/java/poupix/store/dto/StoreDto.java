@@ -13,6 +13,7 @@ public class StoreDto {
   ULID.Value id;
   String name;
   String description;
+  String category;
   Coordinates coordinates;
   String address;
   List<String> pictures;
