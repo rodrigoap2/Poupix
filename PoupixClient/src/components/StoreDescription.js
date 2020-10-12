@@ -6,11 +6,10 @@ import { navigate } from '../navigationRef';
 
 const StoreDescription = ({store, navigation}) => {
     return(
-        
         <View style={styles.container}>
-            <TouchableOpacity style={styles.touchable} activeOpacity={.2} onPress={() => navigation.navigate('StoreDetail', id=store.id)}>
+            <TouchableOpacity style={styles.touchable} activeOpacity={.2} onPress={() => navigation.navigate('StoreDetail', {id: store.id})}>
                 <Image
-                    source={{uri: store.image}}
+                    source={{uri: store.pictures}}
                     style={styles.imageStyle}
                 />
                 <View style={styles.infoStyle}>
@@ -41,8 +40,8 @@ const styles = StyleSheet.create({
         margin: '2%',
         backgroundColor: '#FFFFFF',
         elevation: 3,
-        shadowOffset:{  width: 10,  height: 10,  },
-        shadowColor: 'black',
+        shadowOffset:{  width: 1,  height: 1,  },
+        shadowColor: '#AAA',
         shadowOpacity: 1.0,
     },
     touchable: {

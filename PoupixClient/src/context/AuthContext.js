@@ -39,16 +39,13 @@ const signIn = (dispatch) => {
     return async ({ cpf, password }) => {
         try{
             const token = await AsyncStorage.getItem('token');
-            console.log(token)
             const response = await poupixApi.post('/login', {username: cpf, password})
             await AsyncStorage.setItem('token', response.data.access_token)
-            const token2 = await AsyncStorage.getItem('token');
-            console.log(token2)
             dispatch({type: 'signin', payload: response.data.token});
             navigate('mainFlow')
         }catch(err){
             console.log(err)
-            dispatch({ type: 'add_error', payload: 'Something went wrong with sign in'})
+            dispatch({ type: 'add_error', payload: 'Login ou senha incorretos'})
         }
     };
 }

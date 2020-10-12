@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
         width: width * 0.8,
         height: height * 0.28,
         elevation: 3,
-        shadowOffset:{  width: 10,  height: 10 },
-        shadowColor: 'black',
+        shadowOffset:{  width: 1,  height: 1 },
+        shadowColor: '#AAA',
         shadowOpacity: 1.0,
     },
     blockView: {

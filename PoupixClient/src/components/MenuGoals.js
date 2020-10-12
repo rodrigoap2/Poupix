@@ -39,7 +39,7 @@ const MenuGoals = ({goals, savings, savingsPercentage}) => {
                         </View>
                     </View>
                     <View style={styles.savingsView}>
-                        <Text style={styles.savingsPercentageText}>Você atingiu <Text style={styles.savingsPercentage}>{savingsPercentage*100}%</Text> do seu {'\n'} objetivo mensal</Text>
+                        <Text style={styles.savingsPercentageText}>Você atingiu <Text style={styles.savingsPercentage}>{(savingsPercentage*100).toFixed(0)}%</Text> do seu {'\n'} objetivo mensal</Text>
                         <Text style={styles.savingsText}>Suas economias esse {'\n'} mês somam <Text style={styles.savings}>R$ {savings}</Text></Text>
                     </View>
                 </View>
@@ -62,7 +62,7 @@ const MenuGoals = ({goals, savings, savingsPercentage}) => {
                         </View>
                     </View>
                     <View style={styles.savingsView}>
-                        <Text style={styles.savingsPercentageText}>Você atingiu <Text style={styles.savingsPercentage}>{savingsPercentage*100}%</Text> do seu {'\n'} objetivo mensal</Text>
+                        <Text style={styles.savingsPercentageText}>Você atingiu <Text style={styles.savingsPercentage}>{(savingsPercentage*100).toFixed(0)}%</Text> do seu {'\n'} objetivo mensal</Text>
                         <Text style={styles.savingsText}>Suas economias esse {'\n'} mês somam <Text style={styles.savings}>R$ {savings}</Text></Text>
                     </View>
                 </View>

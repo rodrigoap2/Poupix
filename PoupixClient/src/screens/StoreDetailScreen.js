@@ -13,9 +13,10 @@ import { SafeAreaView } from 'react-navigation';
 const width = Dimensions.get('window').width; 
 const height = Dimensions.get('window').height; 
 
-const StoreDetailScreen = ({navigation, id}) => {
+const StoreDetailScreen = ({navigation}) => {
     const {state, getOneStore} = useContext(StoresContext)
-    
+    const id = navigation.getParam('id')
+    console.log(id)
     useEffect(() => {
         getOneStore(id)
     },[])
@@ -27,7 +28,7 @@ const StoreDetailScreen = ({navigation, id}) => {
         )
     }else{
           
-        const data = [state.detailedStore.cashback.monday*100 + "%", state.detailedStore.cashback.tuesday*100 + "%", state.detailedStore.cashback.wednesday*100 + "%", state.detailedStore.cashback.thursday*100 + "%", state.detailedStore.cashback.friday*100 + "%", state.detailedStore.cashback.saturday*100 + "%", state.detailedStore.cashback.sunday*100 + "%"]
+        const data = [(state.detailedStore.cashback.monday*100).toFixed(0) + "%", (state.detailedStore.cashback.tuesday*100).toFixed(0) + "%", (state.detailedStore.cashback.wednesday*100).toFixed(0) + "%", (state.detailedStore.cashback.thursday*100).toFixed(0) + "%", (state.detailedStore.cashback.friday*100).toFixed(0) + "%", (state.detailedStore.cashback.saturday*100).toFixed(0) + "%", (state.detailedStore.cashback.sunday*100).toFixed(0) + "%"]
         const data3 = [{
             y: state.detailedStore.cashback.monday,
             x: "Seg",

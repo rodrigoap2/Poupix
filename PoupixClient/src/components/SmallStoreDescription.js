@@ -6,7 +6,7 @@ const SmallStoreDescription = ({store}) => {
     return(
         <View style={styles.container}>
             <Image
-                source={{uri: store.image}}
+                source={{uri: store.pictures}}
                 style={styles.imageStyle}
             />
             <View style={styles.infoStyle}>

@@ -14,7 +14,9 @@
     "axios": "^0.20.0",
     "expo": "~38.0.8",
     "expo-linear-gradient": "~8.2.1",
+    "expo-location": "~8.2.1",
     "expo-status-bar": "^1.0.2",
+    "geolib": "^3.3.1",
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
@@ -36,8 +38,7 @@
     "react-navigation": "^4.4.0",
     "react-navigation-stack": "^2.8.2",
     "react-navigation-tabs": "^2.8.13",
-    "victory-native": "^35.0.1",
-    "expo-location": "~8.2.1"
+    "victory-native": "^35.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",

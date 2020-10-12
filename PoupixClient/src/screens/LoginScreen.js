@@ -1,10 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { Text, Button, Input } from 'react-native-elements';
 import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext'
 import { NavigationEvents } from 'react-navigation';
 import * as Location from 'expo-location';
+
+const width = Dimensions.get('window').width; 
+const height = Dimensions.get('window').height; 
 
 const LoginScreen = ({navigation}) => {
     const [cpf, setCpf] = useState('');
@@ -35,27 +38,29 @@ const LoginScreen = ({navigation}) => {
             </Spacer>
             <View style={styles.inputView}>
                 <Spacer/>
-                <Spacer>
-                    <Input
-                        label="CPF"
-                        value={cpf}
-                        onChangeText={validateCpf}
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        keyboardType={'numeric'}
-                        maxLength={11}
-                    />
-                </Spacer>
-                <Spacer>
-                    <Input
-                        secureTextEntry
-                        label="Password"
-                        value={password}
-                        onChangeText={setPassword}
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                    />
-                </Spacer>
+                <View style={{paddingHorizontal : width * 0.06}}>
+                    <Spacer>
+                            <Input
+                                label="CPF"
+                                value={cpf}
+                                onChangeText={validateCpf}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                keyboardType={'numeric'}
+                                maxLength={11}
+                            />
+                    </Spacer>
+                    <Spacer>
+                        <Input
+                            secureTextEntry
+                            label="Password"
+                            value={password}
+                            onChangeText={setPassword}
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                        />
+                    </Spacer>
+                </View>
                 {state.errorMessage ? <Text style={styles.errorMessage}>{state.errorMessage}</Text> : null}
                 <Spacer>
                     <Button
@@ -94,7 +99,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 1,
         borderColor: '#FFFFFF',
-        marginHorizontal: 15
+        marginHorizontal: width * 0.05,
+        paddingVertical: height * 0.04
     },
     signInButton: {
         backgroundColor: '#8516FA',

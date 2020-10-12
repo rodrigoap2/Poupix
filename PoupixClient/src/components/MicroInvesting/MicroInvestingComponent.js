@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, Dimensions, Button} from 'react-native'
 import formatNumber from '../../functions/formatNumber'
 import Slider from '@react-native-community/slider';
 import CheckBox from '@react-native-community/checkbox';
+import poupixApi from '../../api/poupixApi'
 
 const width = Dimensions.get('window').width; 
 const height = Dimensions.get('window').height; 
@@ -11,7 +12,21 @@ const MicroInvestingComponent = ({roundup}) => {
     const [sliderValue, setSliderValue] = useState(roundup ? roundup.roundup: 0.0)
     const [roundupTransaction, setroundupTransaction] = useState(roundup ? false : true)
 
-    console.log(roundupTransaction)
+    const roundUpValueUpdate = (value, type) => {
+        if(type == 'roundup'){
+            setroundupTransaction(value)
+            if(value == true){
+                value = null
+            }else{
+                value = +sliderValue.replace(',','.')
+            }
+        }else if(type == 'slider'){
+            setSliderValue(formatNumber(value))
+            value = value.toFixed(2)
+        }
+        poupixApi.put('/accounts/roundup', {roundup: value})
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.microInvestingInfo}>
@@ -32,6 +47,7 @@ const MicroInvestingComponent = ({roundup}) => {
                         minimumTrackTintColor="#8516FA"
                         maximumTrackTintColor="#707070"
                         thumbTintColor="#8516FA"
+                        onSlidingComplete = {(value) => roundUpValueUpdate(value, 'slider')}
                         onValueChange = {(value) => setSliderValue(formatNumber(value))}
                     />
                     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -48,7 +64,7 @@ const MicroInvestingComponent = ({roundup}) => {
                             onCheckColor='#8516FA'
                             tintColors={{ true : '#8516FA', false: '#8516FA'}}
                             lineWidth={1}
-                            onValueChange={(newValue) => setroundupTransaction(newValue)}
+                            onValueChange={(newValue) => roundUpValueUpdate(newValue, 'roundup')}
                         />
                         <View style={{justifyContent: 'center', marginTop: height* 0.005}}>
                             <Text style={{fontStyle: 'italic', fontSize: 16}}>Arredondamento</Text>

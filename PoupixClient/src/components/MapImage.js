@@ -12,7 +12,7 @@ const MapImage = ({coordinates}) => {
             <MapView
                 initialRegion={{
                 latitude: coordinates.lat,
-                longitude: coordinates.long,
+                longitude: coordinates.lon,
                 latitudeDelta: 0.025,
                 longitudeDelta: 0.025,
                 }}

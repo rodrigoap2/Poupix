@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, Dimensions, SafeAreaView} from 'react-native'
 import ScreenHeader from '../ScreenHeader'
 import BalanceView from '../BalanceView';
 import Spacer from '../Spacer';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const width = Dimensions.get('window').width; 
 const height = Dimensions.get('window').height; 
@@ -21,9 +22,10 @@ const GoalsView = ({navigation, title, name, goals, component}) => {
                 <View style={{backgroundColor: '#FFFFFF'}}>
                     <BalanceView balance={goals.account.balance} balanceLastYear={goals.account.lastYear} revenue={goals.account.revenue} revenueIndex={goals.account.revenueIndex}/>
                 </View>
-                
                 <View style={styles.goalsComponent}>
+                    <ScrollView>
                     {component}
+                    </ScrollView>
                 </View>
             </View>
         )
@@ -38,9 +40,6 @@ const GoalsView = ({navigation, title, name, goals, component}) => {
 }
 
 const styles = StyleSheet.create({
-    title: {
-        fontSize: 48
-    },
     container: {
         flex: 1,
         backgroundColor: '#FFFFFF',
