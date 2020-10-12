@@ -9,6 +9,7 @@ import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
@@ -41,7 +42,7 @@ public class StoreController {
             .id(storeDto.getId().toString())
             .name(storeDto.getName())
             .description(storeDto.getDescription())
-            .category(storeDto.getCategory())
+            .type(storeDto.getCategory())
             .address(storeDto.getAddress())
             .coordinates(storeDto.getCoordinates())
             .pictures(storeDto.getPictures())
@@ -64,12 +65,17 @@ public class StoreController {
                             StoreResponse.builder()
                                 .id(storeDto.getId().toString())
                                 .name(storeDto.getName())
-                                .description(storeDto.getDescription())
-                                .category(storeDto.getCategory())
-                                .address(storeDto.getAddress())
+                                .type(storeDto.getCategory())
                                 .coordinates(storeDto.getCoordinates())
-                                .pictures(storeDto.getPictures())
-                                .cashback(storeDto.getCashback())
+                                .pictures(storeDto.getPictures().get(0))
+                                .cashback(
+                                    storeDto
+                                        .getCashback()
+                                        .get(
+                                            LocalDate.now()
+                                                .getDayOfWeek()
+                                                .toString()
+                                                .toLowerCase()))
                                 .build())
                     .collect(Collectors.toList()))
             .build());

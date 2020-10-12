@@ -30,7 +30,7 @@ public class StoreServiceImpl implements StoreService {
         StoreDto.builder()
             .id(new ULID().nextValue())
             .name(createStoreRequest.getName())
-            .category(createStoreRequest.getCategory())
+            .category(createStoreRequest.getType())
             .address(createStoreRequest.getAddress())
             .coordinates(createStoreRequest.getCoordinates())
             .cashback(createStoreRequest.getCashback())

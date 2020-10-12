@@ -16,7 +16,7 @@ micronaut:
         enabled: true
         generator:
           access-token:
-            expiration: 86400
+            expiration: 432000
         signatures:
           secret:
             generator:
