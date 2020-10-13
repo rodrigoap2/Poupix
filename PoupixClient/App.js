@@ -12,6 +12,7 @@ import MicroInvestingScreen from './src/screens/MicroInvestingScreen';
 import { setNavigator } from './src/navigationRef'
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { Provider as StoresProvider } from './src/context/StoresContext';
+import CreateGoalScreen from './src/screens/CreateGoalScreen';
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
@@ -33,6 +34,7 @@ const switchNavigator = createSwitchNavigator({
     }),
     Lojas: StoresScreen,
     StoreDetail: StoreDetailScreen,
+    CreateGoal: CreateGoalScreen
     },
     {
       defaultNavigationOptions: {

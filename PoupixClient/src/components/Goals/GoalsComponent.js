@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, Dimensions, Button} from 'react-native'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import GoalsIconSvg from '../../../assets/img/GoalsIconSvg'
 import GoalsDescription from './GoalDescription'
+import { navigate } from '../../navigationRef';
 
 const width = Dimensions.get('window').width; 
 const height = Dimensions.get('window').height; 
@@ -34,7 +35,7 @@ const GoalsComponent = ({goals}) => {
                         )
                     }}
                     />
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigate('CreateGoal')}>
                         <View style={styles.createGoalButton}>
                             <Text style={styles.goalButtonText}>Criar nova meta</Text>
                         </View>
